@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c11d7358e693b64e9048007ba7f742d, type: 3}
+  m_Name: BuildHouse
+  m_EditorClassIdentifier: 
+  title: Build House
+  description: "Build houses for the people with your limited resources. Could collapse
+    and kill the inhabitants though\u2026"
+  cardBackground: {fileID: 21300000, guid: 560421e3f0cfe3d4da9d648f8e4ebcef, type: 3}
+  artBackground: {fileID: 0}
+  art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
+  effects:
+  - chance: 0.8
+    villagerChange: 2
+    goatChange: 0
+    maidenChange: 0
+    youngLadChange: 0
+    description: The house is built succefully!
+  - chance: 0.2
+    villagerChange: -2
+    goatChange: 0
+    maidenChange: 0
+    youngLadChange: 0
+    description: The house collapses on them at dinner.
