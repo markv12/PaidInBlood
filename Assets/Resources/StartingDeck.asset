@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: StartingDeck
   m_EditorClassIdentifier: 
   masterList:
+  - {fileID: 11400000, guid: 87578c4782771604ca808ad9dd3a9fa3, type: 2}
   - {fileID: 11400000, guid: 000f6724dfc70ba40a7a8e56128e339e, type: 2}
   - {fileID: 11400000, guid: 684158c53e99f324c96a817ecc83f971, type: 2}
   - {fileID: 11400000, guid: b415c046b09dede4e859ef3300d3daa3, type: 2}

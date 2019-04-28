@@ -10,29 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c11d7358e693b64e9048007ba7f742d, type: 3}
-  m_Name: SlipperySlope
+  m_Name: Expedition
   m_EditorClassIdentifier: 
   title: Slippery Slope
-  description: Climb a steep cliff to capture a goat!
+  description: Train a group of young boys to become men.
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  discardOnUse: 0
   effects:
-  - chance: 0.2
-    villagerChange: 0
-    goatChange: 1
-    maidenChange: 0
-    youngLadChange: 0
-    description: You capture the goat!
-  - chance: 0.3
-    villagerChange: 0
+  - chance: 1
+    villagerChange: -15
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
-    description: You fail and return home empty handed.
-  - chance: 0.5
-    villagerChange: -2
-    goatChange: 0
-    maidenChange: 0
-    youngLadChange: 0
-    description: Two villiagers fall off the mountainside trying to capture the beast.
+    unlockedCards: []
+    description: 15 villagers will leave for 5 turns.
+  delayedEffects:
+  - duration: 2
+    dayOfActivation: 2
+    notificaitonText: '15 Villagers in Expedition. Finishes in: {0} days'
+    effects:
+    - chance: 0.75
+      villagerChange: 15
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 1
+      unlockedCards: []
+      description: All the men return and you are offered a young man for sacrifice
+    - chance: 0.25
+      villagerChange: 10
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 1
+      unlockedCards: []
+      description: 5 men lost their lives during the expedition but return with 1
+        young man for sacrifice
