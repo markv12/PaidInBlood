@@ -8,9 +8,9 @@ public class MakeScriptableObject
     [MenuItem("Assets/Create/It")]
     public static void CreateMyAsset()
     {
-        CardData asset = ScriptableObject.CreateInstance<CardData>();
+        GodList asset = ScriptableObject.CreateInstance<GodList>();
 
-        AssetDatabase.CreateAsset(asset, "Assets/CardEffect.asset");
+        AssetDatabase.CreateAsset(asset, "Assets/GodList.asset");
         AssetDatabase.SaveAssets();
 
         EditorUtility.FocusProjectWindow();

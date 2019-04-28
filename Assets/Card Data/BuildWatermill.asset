@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Build Watermill
   description: Build a watermill for your town.
-  cardBackground: {fileID: 21300000, guid: 560421e3f0cfe3d4da9d648f8e4ebcef, type: 3}
+  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   effects:

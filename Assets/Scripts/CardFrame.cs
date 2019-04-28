@@ -2,11 +2,16 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Text;
+using UnityEngine.EventSystems;
 
 public class CardFrame : MonoBehaviour {
 
+    public bool clickable = true;
+
     public delegate void CardClickedDelegate(CardData data);
     public CardClickedDelegate cardClickedEvent;
+
+    public RectTransform rectT;
 
     public Button button;
 
@@ -30,7 +35,17 @@ public class CardFrame : MonoBehaviour {
     }
 
     private void Awake() {
-        button.onClick.AddListener(delegate { cardClickedEvent?.Invoke(data); });
+        button.onClick.AddListener(delegate { if (clickable) { cardClickedEvent?.Invoke(data); } });
+    }
+
+    public void OnPointerEnter(BaseEventData eventData) {
+        if (clickable) {
+            rectT.localScale = new Vector3(1.02f, 1.02f, 1.02f);
+        }
+    }
+
+    public void OnPointerExit(BaseEventData eventData) {
+        rectT.localScale = Vector3.one;
     }
 
     private static string GetDescription(CardData data) {
@@ -42,8 +57,10 @@ public class CardFrame : MonoBehaviour {
             CardData.CardEffectChance effect = data.effects[i];
             totalChance += effect.chance;
             if (effect.chance < 1) {
+                result.Append("<size=140%>");
                 result.Append((effect.chance * 100).ToString());
                 result.Append("% ");
+                result.Append("<size=100%>");
             }
             result.Append(CardData.GetEffectText(effect));
             result.AppendLine();

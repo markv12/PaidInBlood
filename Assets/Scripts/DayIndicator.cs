@@ -6,12 +6,41 @@ using TMPro;
 public class DayIndicator : MonoBehaviour {
 
     public RectTransform mainT;
-    public TMP_Text textPrefab;
+    public GameObject textPrefab;
+    private List<TextParts> numberTexts = new List<TextParts>(NUMBER_COUNT);
 
-    private const float SPACE_PER_NUMBER = 30;
+    private const int NUMBER_COUNT = 24;
+    private void Awake() {
+        for (int i = 0; i < NUMBER_COUNT; i++) {
+            GameObject newTextObj = Instantiate(textPrefab);
+            TMP_Text textComp = newTextObj.GetComponent<TMP_Text>();
+            textComp.text = i.ToString();
+            textComp.color = GetColorForDay(i);
+
+            RectTransform textTrans = newTextObj.GetComponent<RectTransform>();
+            textTrans.SetParent(mainT, false);
+            textTrans.anchoredPosition = new Vector2(i * SPACE_PER_NUMBER, 0);
+
+            newTextObj.SetActive(true);
+            numberTexts.Add(new TextParts { theText = textComp, theTransform = textTrans });
+        }
+    }
+
+    private const float SPACE_PER_NUMBER = 110;
     private Coroutine moveRoutine;
     public void GoToDayNumber(int dayNumber) {
-        float xPos = ((float)dayNumber * SPACE_PER_NUMBER);
+        int startNumber = dayNumber - NUMBER_COUNT / 2;
+        for (int i = 0; i < numberTexts.Count; i++) {
+            int theNumber = startNumber + i;
+
+            TextParts theText = numberTexts[i];
+            theText.theText.text = theNumber.ToString();
+            theText.theText.color = GetColorForDay(theNumber);
+
+            theText.theTransform.anchoredPosition = new Vector2(theNumber * SPACE_PER_NUMBER, 0);
+        }
+
+        float xPos = -((float)dayNumber * SPACE_PER_NUMBER);
         this.EnsureCoroutineStopped(ref moveRoutine);
         moveRoutine = StartCoroutine(MoveNumberLine(xPos));
     }
@@ -32,4 +61,20 @@ public class DayIndicator : MonoBehaviour {
         mainT.anchoredPosition = endPos;
         moveRoutine = null;
     }
+
+    private static Color GetColorForDay(int day) {
+        if(day < 0) {
+            return Color.clear;
+        } else if (GameMain.IsDaySacrificeDay(day)) {
+            return Color.red;
+        } else {
+            return Color.white;
+        }
+    }
+
+    private struct TextParts {
+        public TMP_Text theText;
+        public RectTransform theTransform;
+    }
+
 }

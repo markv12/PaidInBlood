@@ -18,6 +18,11 @@ public class GameMain : MonoBehaviour {
     private UIManager uiManager;
     [SerializeField]
     private DayIndicator dayIndicator;
+    [SerializeField]
+    private GodUI godUI;
+
+    [SerializeField]
+    private GodList godList;
 
     private int villagers = 0;
     public int Villagers {
@@ -84,10 +89,21 @@ public class GameMain : MonoBehaviour {
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             if (currentState == GameState.ViewingEffect) {
-                DrawCards();
-                currentState = GameState.ChoosingCard;
-                uiManager.CloseEffectPanel();
-                CurrentDay++;
+                if (uiManager.EffectPanelOpen()) {
+                    CurrentDay++;
+
+                    if (IsDaySacrificeDay(CurrentDay)) {
+                        uiManager.HideCards();
+                        System.Array values = System.Enum.GetValues(typeof(GodType));
+                        God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
+                        godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
+                        currentState = GameState.InteractingWithGod;
+                    } else {
+                        ResetCards();
+                        currentState = GameState.ChoosingCard;
+                    }
+                    uiManager.CloseEffectPanel();
+                }
             }
         }
     }
@@ -113,7 +129,7 @@ public class GameMain : MonoBehaviour {
                 }
             }
             if (message == "") { message = "Nothing Happened"; }
-            uiManager.ShowEffect(message);
+            uiManager.ShowEffect(message, UIManager.CARD_MOVE_TIME);
             currentState = GameState.ViewingEffect;
         }
     }
@@ -124,9 +140,46 @@ public class GameMain : MonoBehaviour {
         uiManager.ShowCards(card1, card2);
     }
 
+    private void ResetCards() {
+        CardData card1 = cardData[Random.Range(0, cardData.Length)];
+        CardData card2 = cardData[Random.Range(0, cardData.Length)];
+        uiManager.ResetCards(card1, card2);
+    }
+
+    public static bool IsDaySacrificeDay(int day) {
+        return day % 7 == 0;
+    }
+
     private enum GameState {
         ChoosingCard,
         ViewingEffect,
+        InteractingWithGod
+    }
+
+    private static string GetSacrificeText(GodType type) {
+        switch (type) {
+            case GodType.Frog:
+                return "Sacrifice Maiden";
+            case GodType.Goat:
+                return "Sacrifice Goat";
+            case GodType.Rabbit:
+                return "Sacrifice Young Lad";
+            default:
+                return "";
+        }
+    }
+
+    private bool CanSacrifice(GodType type) {
+        switch (type) {
+            case GodType.Frog:
+                return Maidens > 0;
+            case GodType.Goat:
+                return Goats > 0;
+            case GodType.Rabbit:
+                return YoungLads > 0;
+            default:
+                return false;
+        }
     }
 
     private void OnDestroy() {
