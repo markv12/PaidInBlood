@@ -15,6 +15,8 @@ public class GameMain : MonoBehaviour {
     private TMP_Text youngLadCountText;
 
     [SerializeField]
+    private OverTimeEffectsUIManager notificationManager;
+    [SerializeField]
     private UIManager uiManager;
     [SerializeField]
     private DayIndicator dayIndicator;
@@ -61,17 +63,22 @@ public class GameMain : MonoBehaviour {
     }
 
     private GameState currentState = GameState.ChoosingCard;
-    
+    public delegate void DayChangedDelegate(int prevDay, int currentDay);
+    public event DayChangedDelegate DayChangedEvent;
+
     private int currentDay = 0;
     public int CurrentDay {
         get {
             return currentDay;
         }
         set {
+            int prevDay = currentDay;
             currentDay = value;
             dayIndicator.GoToDayNumber(currentDay);
+            DayChangedEvent?.Invoke(prevDay, currentDay);
         }
     }
+    List<CardData.DelayedEffect> delayedEffects = new List<CardData.DelayedEffect>();
 
 
     [SerializeField]
@@ -86,6 +93,21 @@ public class GameMain : MonoBehaviour {
         Goats = 1;
         Maidens = 1;
         YoungLads = 1;
+        DayChangedEvent += DayChangedHandler;
+    }
+
+    void DayChangedHandler(int prev, int curDay){
+        for (int i = 0; i < delayedEffects.Count; i++)
+        {
+            CardData.DelayedEffect dE = delayedEffects[i];
+            if(dE.dayOfActivation >= CurrentDay){
+                string message = RunEffectsOnCard(dE.effects);
+                
+                Debug.Log(message);
+                //show message
+            }   
+        }
+        notificationManager.RefreshNotificaitons(CurrentDay);
     }
 
     private void Update() {
@@ -112,30 +134,42 @@ public class GameMain : MonoBehaviour {
 
     private void CardClickedHandler(CardData data) {
         if (currentState == GameState.ChoosingCard) {
-            string message = "";
-            float effectNumber = Random.Range(0.0f, 1.0f);
-
-            float accum = 0;
-            for (int i = 0; i < data.effects.Length; i++) {
-                CardData.CardEffectChance effectChance = data.effects[i];
-                accum += effectChance.chance;
-                if(effectNumber <= accum) {
-                    Villagers += effectChance.villagerChange;
-                    Goats += effectChance.goatChange;
-                    Maidens += effectChance.maidenChange;
-                    YoungLads += effectChance.youngLadChange;
-                    deck.AddToDeck(effectChance.unlockedCards);
-                    message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
-
-                    break;
-                }
+            string message = RunEffectsOnCard(data.effects);
+            for (int i = 0; i < data.delayedEffects.Length; i++)
+            {
+                data.delayedEffects[i].dayOfActivation = CurrentDay + data.delayedEffects[i].duration; 
+                delayedEffects.Add(data.delayedEffects[i]);
+                notificationManager.AddNotification(data.delayedEffects[i].notificaitonText, data.delayedEffects[i].dayOfActivation);
             }
+            if(data.delayedEffects.Length != 0)
+                notificationManager.RefreshNotificaitons(CurrentDay);
             if (message == "") { message = "Nothing Happened"; }
             uiManager.ShowEffect(message, UIManager.CARD_MOVE_TIME);
             currentState = GameState.ViewingEffect;
             if(data.discardOnUse)
                 deck.RemoveFromDeck(data);
         }
+    }
+
+    string RunEffectsOnCard(CardData.CardEffectChance[] ef){
+        string message = "";
+        float effectNumber = Random.Range(0.0f, 1.0f);
+
+        float accum = 0;
+        for (int i = 0; i < ef.Length; i++) {
+            CardData.CardEffectChance effectChance = ef[i];
+            accum += effectChance.chance;
+            if(effectNumber <= accum) {
+                Villagers += effectChance.villagerChange;
+                Goats += effectChance.goatChange;
+                Maidens += effectChance.maidenChange;
+                YoungLads += effectChance.youngLadChange;
+                deck.AddToDeck(effectChance.unlockedCards);
+                message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
+                break;
+            }
+        }
+        return message;
     }
 
     private void SacrificeClickedHandler(GodType type) {

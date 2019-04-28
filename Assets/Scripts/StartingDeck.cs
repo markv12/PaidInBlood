@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class StartingDeck : ScriptableObject
 {
+    [Reorderable]
     public CardData[] masterList;
 }

@@ -34,3 +34,14 @@ MonoBehaviour:
     youngLadChange: 0
     unlockedCards: []
     description: The house collapses on them at dinner.
+  delayedEffects:
+  - daysForActivation: 1
+    dayOfActivation: 0
+    effects:
+    - chance: 1
+      villagerChange: 100
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: WAZZAAAAP

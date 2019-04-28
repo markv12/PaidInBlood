@@ -14,6 +14,17 @@ public class CardData : ScriptableObject {
 
     [Reorderable]
     public CardEffectChance[] effects;
+    [Reorderable]
+    public DelayedEffect[] delayedEffects;
+
+    [Serializable]
+    public class DelayedEffect{
+        public int duration;
+        [HideInInspector]
+        public int dayOfActivation;
+        public string notificaitonText;
+        public CardEffectChance[] effects; 
+    }
 
     [Serializable]
     public class CardEffectChance {
