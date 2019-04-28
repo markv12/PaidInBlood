@@ -51,16 +51,15 @@ public class UIManager : MonoBehaviour {
         StartCoroutine(MoveCardsOut());
     }
 
-    private Coroutine fadeRoutine;
-    public void ShowEffect(string effectMessage, float waitTime = 0) {
-        effectText.text = effectMessage;
-        this.EnsureCoroutineStopped(ref fadeRoutine);
-        fadeRoutine = StartCoroutine(FadeEffectPanel(true, waitTime));
+    private Coroutine showRoutine;
+    public void ShowEffect(string effectMessage, float waitTime = 0, float fadeTime = FADE_TIME) {
+        this.EnsureCoroutineStopped(ref showRoutine);
+        showRoutine = StartCoroutine(FadeEffectPanel(effectMessage, true, waitTime, fadeTime));
     }
-
-    public void CloseEffectPanel() {
-        this.EnsureCoroutineStopped(ref fadeRoutine);
-        fadeRoutine = StartCoroutine(FadeEffectPanel(false, 0));
+    private Coroutine hideRoutine;
+    public void CloseEffectPanel(float fadeTime = FADE_TIME) {
+        this.EnsureCoroutineStopped(ref hideRoutine);
+        hideRoutine = StartCoroutine(FadeEffectPanel("", false, 0, fadeTime));
     }
 
     private void OnDestroy() {
@@ -139,19 +138,20 @@ public class UIManager : MonoBehaviour {
     }
 
     private const float FADE_TIME = 0.4f;
-    private IEnumerator FadeEffectPanel(bool fadeIn, float waitTime) {
+    private IEnumerator FadeEffectPanel(string message, bool fadeIn, float waitTime, float fadeTime) {
         if (waitTime > 0) {
             yield return new WaitForSeconds(waitTime);
         }
         if (fadeIn) {
             effectUI.SetActive(true);
+            effectText.text = message;
         }
-        float startAlpha = effectUIGroup.alpha;
+        float startAlpha = fadeIn ? 0 : 1;
         float endAlpha = fadeIn ? 1 : 0;
         float progress = 0;
         float elapsedTime = 0;
         while(progress <= 1) {
-            progress = elapsedTime / FADE_TIME;
+            progress = elapsedTime / fadeTime;
             elapsedTime += Time.unscaledDeltaTime;
             effectUIGroup.alpha = Easing.easeInOutSine(startAlpha, endAlpha, progress);
             yield return null;
@@ -159,8 +159,12 @@ public class UIManager : MonoBehaviour {
         effectUIGroup.alpha = endAlpha;
         if (!fadeIn) {
             effectUI.SetActive(false);
+            effectText.text = message;
+            hideRoutine = null;
         }
-        fadeRoutine = null;
+        if (fadeIn) {
+            showRoutine = null;
+        }
     }
 
     public bool EffectPanelOpen() {

@@ -114,19 +114,24 @@ public class GameMain : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             if (currentState == GameState.ViewingEffect) {
                 if (uiManager.EffectPanelOpen()) {
-                    CurrentDay++;
-
-                    if (IsDaySacrificeDay(CurrentDay)) {
-                        uiManager.HideCards();
-                        System.Array values = System.Enum.GetValues(typeof(GodType));
-                        God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
-                        godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
-                        currentState = GameState.InteractingWithGod;
+                    if (eventMessages.Count > 0) {
+                        ShowNextEventMessage(0.4f);
+                        uiManager.CloseEffectPanel(0.3f);
                     } else {
-                        ResetCards();
-                        currentState = GameState.ChoosingCard;
+                        CurrentDay++;
+
+                        if (IsDaySacrificeDay(CurrentDay)) {
+                            uiManager.HideCards();
+                            System.Array values = System.Enum.GetValues(typeof(GodType));
+                            God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
+                            godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
+                            currentState = GameState.InteractingWithGod;
+                        } else {
+                            ResetCards();
+                            currentState = GameState.ChoosingCard;
+                        }
+                        uiManager.CloseEffectPanel();
                     }
-                    uiManager.CloseEffectPanel();
                 }
             }
         }
@@ -134,18 +139,35 @@ public class GameMain : MonoBehaviour {
 
     private void CardClickedHandler(CardData data) {
         if (currentState == GameState.ChoosingCard) {
-            string message = RunEffectsOnCard(data.effects);
+            string message = "";
+            float effectNumber = Random.Range(0.0f, 1.0f);
+
+            float accum = 0;
+            for (int i = 0; i < data.effects.Length; i++) {
+                CardData.CardEffectChance effectChance = data.effects[i];
+                accum += effectChance.chance;
+                if(effectNumber <= accum) {
+                    Villagers += effectChance.villagerChange;
+                    Goats += effectChance.goatChange;
+                    Maidens += effectChance.maidenChange;
+                    YoungLads += effectChance.youngLadChange;
+                    deck.AddToDeck(effectChance.unlockedCards);
+                    message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
+                    break;
+                }
+            }
             for (int i = 0; i < data.delayedEffects.Length; i++)
             {
                 data.delayedEffects[i].dayOfActivation = CurrentDay + data.delayedEffects[i].duration; 
                 delayedEffects.Add(data.delayedEffects[i]);
                 notificationManager.AddNotification(data.delayedEffects[i].notificaitonText, data.delayedEffects[i].dayOfActivation);
             }
+            
             if(data.delayedEffects.Length != 0)
                 notificationManager.RefreshNotificaitons(CurrentDay);
             if (message == "") { message = "Nothing Happened"; }
-            uiManager.ShowEffect(message, UIManager.CARD_MOVE_TIME);
-            currentState = GameState.ViewingEffect;
+            AddEventMessage(message);
+            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
             if(data.discardOnUse)
                 deck.RemoveFromDeck(data);
         }
@@ -170,6 +192,19 @@ public class GameMain : MonoBehaviour {
             }
         }
         return message;
+    }
+    
+    private List<string> eventMessages = new List<string>();
+    private void AddEventMessage(string message) {
+        eventMessages.Add(message);
+    }
+    private void ShowNextEventMessage(float waitTime) {
+        if (eventMessages.Count > 0) {
+            string nextMessage = eventMessages[0];
+            uiManager.ShowEffect(nextMessage, waitTime);
+            currentState = GameState.ViewingEffect;
+            eventMessages.RemoveAt(0);
+        }
     }
 
     private void SacrificeClickedHandler(GodType type) {
