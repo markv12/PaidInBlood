@@ -92,19 +92,24 @@ public class GameMain : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             if (currentState == GameState.ViewingEffect) {
                 if (uiManager.EffectPanelOpen()) {
-                    CurrentDay++;
-
-                    if (IsDaySacrificeDay(CurrentDay)) {
-                        uiManager.HideCards();
-                        System.Array values = System.Enum.GetValues(typeof(GodType));
-                        God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
-                        godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
-                        currentState = GameState.InteractingWithGod;
+                    if (eventMessages.Count > 0) {
+                        ShowNextEventMessage(0.4f);
+                        uiManager.CloseEffectPanel(0.3f);
                     } else {
-                        ResetCards();
-                        currentState = GameState.ChoosingCard;
+                        CurrentDay++;
+
+                        if (IsDaySacrificeDay(CurrentDay)) {
+                            uiManager.HideCards();
+                            System.Array values = System.Enum.GetValues(typeof(GodType));
+                            God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
+                            godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
+                            currentState = GameState.InteractingWithGod;
+                        } else {
+                            ResetCards();
+                            currentState = GameState.ChoosingCard;
+                        }
+                        uiManager.CloseEffectPanel();
                     }
-                    uiManager.CloseEffectPanel();
                 }
             }
         }
@@ -126,15 +131,28 @@ public class GameMain : MonoBehaviour {
                     YoungLads += effectChance.youngLadChange;
                     deck.AddToDeck(effectChance.unlockedCards);
                     message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
-
                     break;
                 }
             }
             if (message == "") { message = "Nothing Happened"; }
-            uiManager.ShowEffect(message, UIManager.CARD_MOVE_TIME);
-            currentState = GameState.ViewingEffect;
+            AddEventMessage(message);
+            AddEventMessage(message + "penis");
+            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
             if(data.discardOnUse)
                 deck.RemoveFromDeck(data);
+        }
+    }
+
+    private List<string> eventMessages = new List<string>();
+    private void AddEventMessage(string message) {
+        eventMessages.Add(message);
+    }
+    private void ShowNextEventMessage(float waitTime) {
+        if (eventMessages.Count > 0) {
+            string nextMessage = eventMessages[0];
+            uiManager.ShowEffect(nextMessage, waitTime);
+            currentState = GameState.ViewingEffect;
+            eventMessages.RemoveAt(0);
         }
     }
 
