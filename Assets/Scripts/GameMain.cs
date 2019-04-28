@@ -136,7 +136,6 @@ public class GameMain : MonoBehaviour {
             }
             if (message == "") { message = "Nothing Happened"; }
             AddEventMessage(message);
-            AddEventMessage(message + "penis");
             ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
             if(data.discardOnUse)
                 deck.RemoveFromDeck(data);
