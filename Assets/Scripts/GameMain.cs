@@ -100,10 +100,10 @@ public class GameMain : MonoBehaviour {
         for (int i = 0; i < delayedEffects.Count; i++)
         {
             CardData.DelayedEffect dE = delayedEffects[i];
-            if(dE.dayOfActivation >= CurrentDay){
-                string message = RunEffectsOnCard(dE.effects);
-                
-                Debug.Log(message);
+            if(dE.dayOfActivation <= CurrentDay){
+                CardData.CardEffectChance e = PickEffect(dE.effects);
+                ApplyEffect(e);     
+                // Debug.Log(message);
                 //show message
             }   
         }
@@ -139,61 +139,48 @@ public class GameMain : MonoBehaviour {
 
     private void CardClickedHandler(CardData data) {
         if (currentState == GameState.ChoosingCard) {
-            string message = "";
-            float effectNumber = Random.Range(0.0f, 1.0f);
-
-            float accum = 0;
-            for (int i = 0; i < data.effects.Length; i++) {
-                CardData.CardEffectChance effectChance = data.effects[i];
-                accum += effectChance.chance;
-                if(effectNumber <= accum) {
-                    Villagers += effectChance.villagerChange;
-                    Goats += effectChance.goatChange;
-                    Maidens += effectChance.maidenChange;
-                    YoungLads += effectChance.youngLadChange;
-                    deck.AddToDeck(effectChance.unlockedCards);
-                    message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
-                    break;
-                }
-            }
+            CardData.CardEffectChance choosenEffect = PickEffect(data.effects);
+            ApplyEffect(choosenEffect);
             for (int i = 0; i < data.delayedEffects.Length; i++)
             {
                 data.delayedEffects[i].dayOfActivation = CurrentDay + data.delayedEffects[i].duration; 
                 delayedEffects.Add(data.delayedEffects[i]);
                 notificationManager.AddNotification(data.delayedEffects[i].notificaitonText, data.delayedEffects[i].dayOfActivation);
             }
-            
-            if(data.delayedEffects.Length != 0)
-                notificationManager.RefreshNotificaitons(CurrentDay);
-            if (message == "") { message = "Nothing Happened"; }
-            AddEventMessage(message);
-            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
             if(data.discardOnUse)
                 deck.RemoveFromDeck(data);
         }
     }
-
-    string RunEffectsOnCard(CardData.CardEffectChance[] ef){
-        string message = "";
+    
+    private CardData.CardEffectChance PickEffect(CardData.CardEffectChance[] chances) {
         float effectNumber = Random.Range(0.0f, 1.0f);
-
         float accum = 0;
-        for (int i = 0; i < ef.Length; i++) {
-            CardData.CardEffectChance effectChance = ef[i];
+        for (int i = 0; i < chances.Length; i++) {
+            CardData.CardEffectChance effectChance = chances[i];
             accum += effectChance.chance;
-            if(effectNumber <= accum) {
-                Villagers += effectChance.villagerChange;
-                Goats += effectChance.goatChange;
-                Maidens += effectChance.maidenChange;
-                YoungLads += effectChance.youngLadChange;
-                deck.AddToDeck(effectChance.unlockedCards);
-                message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
-                break;
+            if (effectNumber <= accum) {
+                return effectChance;
             }
         }
-        return message;
+        return null;
     }
-    
+
+    private void ApplyEffect(CardData.CardEffectChance effect) {
+        string message = "";
+        if (effect != null) {
+            Villagers += effect.villagerChange;
+            Goats += effect.goatChange;
+            Maidens += effect.maidenChange;
+            YoungLads += effect.youngLadChange;
+            deck.AddToDeck(effect.unlockedCards);
+            message += CardData.GetEffectText(effect) + System.Environment.NewLine;
+        } else {
+            message = "Nothing Happened";
+        }
+        AddEventMessage(message);
+        ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
+    }
+
     private List<string> eventMessages = new List<string>();
     private void AddEventMessage(string message) {
         eventMessages.Add(message);
@@ -201,34 +188,24 @@ public class GameMain : MonoBehaviour {
     private void ShowNextEventMessage(float waitTime) {
         if (eventMessages.Count > 0) {
             string nextMessage = eventMessages[0];
+            Debug.Log("SHOW: " + nextMessage);
             uiManager.ShowEffect(nextMessage, waitTime);
             currentState = GameState.ViewingEffect;
             eventMessages.RemoveAt(0);
         }
     }
 
-    private void SacrificeClickedHandler(GodType type) {
+    private void SacrificeClickedHandler(God god, bool successful) {
         if(currentState == GameState.InteractingWithGod) {
-            switch (type) {
-                case GodType.Frog:
-                    if(Maidens > 0) {
-
-                    }
-                    break;
-                case GodType.Goat:
-                    if(Goats > 0) {
-
-                    }
-                    break;
-                case GodType.Rabbit:
-                    if(YoungLads > 0) {
-
-                    }
-                    break;
+            CardData.CardEffectChance choosenEffect;
+            if (successful) {
+                choosenEffect = PickEffect(god.goodChances);
+            } else {
+                choosenEffect = PickEffect(god.badChances);
             }
+            ApplyEffect(choosenEffect);
             godUI.HideUI();
             CurrentDay++;
-            currentState = GameState.ChoosingCard;
         }
     }
 
