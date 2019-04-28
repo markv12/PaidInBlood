@@ -32,7 +32,7 @@ public class OverTimeEffectsUIManager : MonoBehaviour
             }else{
                 ui.rect.anchoredPosition = new Vector2(0, -showing * ui.rect.sizeDelta.y);
                 showing++;
-                string notificationText = String.Format(ui.baseText, currentDay - ui.dayOfExpiration); 
+                string notificationText = String.Format(ui.baseText, ui.dayOfExpiration - currentDay); 
                 ui.textField.text = notificationText;
             }
         }
