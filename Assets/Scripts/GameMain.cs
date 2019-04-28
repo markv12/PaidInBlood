@@ -117,29 +117,40 @@ public class GameMain : MonoBehaviour {
 
     private void CardClickedHandler(CardData data) {
         if (currentState == GameState.ChoosingCard) {
-            string message = "";
-            float effectNumber = Random.Range(0.0f, 1.0f);
-
-            float accum = 0;
-            for (int i = 0; i < data.effects.Length; i++) {
-                CardData.CardEffectChance effectChance = data.effects[i];
-                accum += effectChance.chance;
-                if(effectNumber <= accum) {
-                    Villagers += effectChance.villagerChange;
-                    Goats += effectChance.goatChange;
-                    Maidens += effectChance.maidenChange;
-                    YoungLads += effectChance.youngLadChange;
-                    deck.AddToDeck(effectChance.unlockedCards);
-                    message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
-                    break;
-                }
-            }
-            if (message == "") { message = "Nothing Happened"; }
-            AddEventMessage(message);
-            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
+            CardData.CardEffectChance choosenEffect = PickEffect(data.effects);
+            ApplyEffect(choosenEffect);
             if(data.discardOnUse)
                 deck.RemoveFromDeck(data);
         }
+    }
+
+    private CardData.CardEffectChance PickEffect(CardData.CardEffectChance[] chances) {
+        float effectNumber = Random.Range(0.0f, 1.0f);
+        float accum = 0;
+        for (int i = 0; i < chances.Length; i++) {
+            CardData.CardEffectChance effectChance = chances[i];
+            accum += effectChance.chance;
+            if (effectNumber <= accum) {
+                return effectChance;
+            }
+        }
+        return null;
+    }
+
+    private void ApplyEffect(CardData.CardEffectChance effect) {
+        string message = "";
+        if (effect != null) {
+            Villagers += effect.villagerChange;
+            Goats += effect.goatChange;
+            Maidens += effect.maidenChange;
+            YoungLads += effect.youngLadChange;
+            deck.AddToDeck(effect.unlockedCards);
+            message += CardData.GetEffectText(effect) + System.Environment.NewLine;
+        } else {
+            message = "Nothing Happened";
+        }
+        AddEventMessage(message);
+        ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
     }
 
     private List<string> eventMessages = new List<string>();
@@ -155,28 +166,17 @@ public class GameMain : MonoBehaviour {
         }
     }
 
-    private void SacrificeClickedHandler(GodType type) {
+    private void SacrificeClickedHandler(God god, bool successful) {
         if(currentState == GameState.InteractingWithGod) {
-            switch (type) {
-                case GodType.Frog:
-                    if(Maidens > 0) {
-
-                    }
-                    break;
-                case GodType.Goat:
-                    if(Goats > 0) {
-
-                    }
-                    break;
-                case GodType.Rabbit:
-                    if(YoungLads > 0) {
-
-                    }
-                    break;
+            CardData.CardEffectChance choosenEffect;
+            if (successful) {
+                choosenEffect = PickEffect(god.goodChances);
+            } else {
+                choosenEffect = PickEffect(god.badChances);
             }
+            ApplyEffect(choosenEffect);
             godUI.HideUI();
             CurrentDay++;
-            currentState = GameState.ChoosingCard;
         }
     }
 

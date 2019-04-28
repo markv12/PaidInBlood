@@ -5,7 +5,7 @@ using TMPro;
 
 public class GodUI : MonoBehaviour {
 
-    public delegate void SacrificeClickedDelegate(GodType type);
+    public delegate void SacrificeClickedDelegate(God god, bool successful);
     public SacrificeClickedDelegate sacrificeClickedEvent;
 
     public Image background;
@@ -23,7 +23,7 @@ public class GodUI : MonoBehaviour {
         StartCoroutine(ShowUI(god, sacrificePossible));
         sacrificeButton.onClick.RemoveAllListeners();
         sacrificeButton.onClick.AddListener( delegate {
-            sacrificeClickedEvent?.Invoke(god.type);
+            sacrificeClickedEvent?.Invoke(god, sacrificePossible);
         });
     }
 

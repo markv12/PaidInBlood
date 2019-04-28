@@ -37,6 +37,8 @@ public class God {
     public string name;
     public string sacrificeButtonText;
     public string entranceSaying;
+    public CardData.CardEffectChance[] goodChances;
+    public CardData.CardEffectChance[] badChances;
 }
 public enum GodType {
     Frog,
