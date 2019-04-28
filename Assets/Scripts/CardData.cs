@@ -10,6 +10,7 @@ public class CardData : ScriptableObject {
     public Sprite cardBackground;
     public Sprite artBackground;
     public Sprite art;
+    public bool discardOnUse;
 
     [Reorderable]
     public CardEffectChance[] effects;
@@ -22,6 +23,7 @@ public class CardData : ScriptableObject {
         public int goatChange = 0;
         public int maidenChange = 0;
         public int youngLadChange = 0;
+        public CardData[] unlockedCards;
         [TextArea]
         public string description;
     }

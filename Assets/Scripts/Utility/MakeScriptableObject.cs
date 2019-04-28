@@ -8,9 +8,9 @@ public class MakeScriptableObject
     [MenuItem("Assets/Create/It")]
     public static void CreateMyAsset()
     {
-        GodList asset = ScriptableObject.CreateInstance<GodList>();
+        StartingDeck asset = ScriptableObject.CreateInstance<StartingDeck>();
 
-        AssetDatabase.CreateAsset(asset, "Assets/GodList.asset");
+        AssetDatabase.CreateAsset(asset, "Assets/StartingDeck.asset");
         AssetDatabase.SaveAssets();
 
         EditorUtility.FocusProjectWindow();

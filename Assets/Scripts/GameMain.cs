@@ -75,9 +75,10 @@ public class GameMain : MonoBehaviour {
 
 
     [SerializeField]
-    private CardData[] cardData;
+    private Deck deck;
 
     void Start() {
+        deck.Initialize();
         uiManager.cardClickedEvent += CardClickedHandler;
         godUI.sacrificeClickedEvent += SacrificeClickedHandler;
         DrawCards();
@@ -123,7 +124,7 @@ public class GameMain : MonoBehaviour {
                     Goats += effectChance.goatChange;
                     Maidens += effectChance.maidenChange;
                     YoungLads += effectChance.youngLadChange;
-
+                    deck.AddToDeck(effectChance.unlockedCards);
                     message += CardData.GetEffectText(effectChance) + System.Environment.NewLine;
 
                     break;
@@ -132,6 +133,8 @@ public class GameMain : MonoBehaviour {
             if (message == "") { message = "Nothing Happened"; }
             uiManager.ShowEffect(message, UIManager.CARD_MOVE_TIME);
             currentState = GameState.ViewingEffect;
+            if(data.discardOnUse)
+                deck.RemoveFromDeck(data);
         }
     }
 
@@ -161,15 +164,13 @@ public class GameMain : MonoBehaviour {
     }
 
     private void DrawCards() {
-        CardData card1 = cardData[Random.Range(0, cardData.Length)];
-        CardData card2 = cardData[Random.Range(0, cardData.Length)];
-        uiManager.ShowCards(card1, card2);
+        var cards = deck.DrawCards();
+        uiManager.ShowCards(cards.Item1, cards.Item2);
     }
 
     private void ResetCards() {
-        CardData card1 = cardData[Random.Range(0, cardData.Length)];
-        CardData card2 = cardData[Random.Range(0, cardData.Length)];
-        uiManager.ResetCards(card1, card2);
+        var cards = deck.DrawCards();
+        uiManager.ResetCards(cards.Item1, cards.Item2);
     }
 
     public static bool IsDaySacrificeDay(int day) {
