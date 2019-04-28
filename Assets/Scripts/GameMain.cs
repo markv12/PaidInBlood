@@ -79,6 +79,7 @@ public class GameMain : MonoBehaviour {
 
     void Start() {
         uiManager.cardClickedEvent += CardClickedHandler;
+        godUI.sacrificeClickedEvent += SacrificeClickedHandler;
         DrawCards();
         Villagers = 30;
         Goats = 1;
@@ -134,6 +135,31 @@ public class GameMain : MonoBehaviour {
         }
     }
 
+    private void SacrificeClickedHandler(GodType type) {
+        if(currentState == GameState.InteractingWithGod) {
+            switch (type) {
+                case GodType.Frog:
+                    if(Maidens > 0) {
+
+                    }
+                    break;
+                case GodType.Goat:
+                    if(Goats > 0) {
+
+                    }
+                    break;
+                case GodType.Rabbit:
+                    if(YoungLads > 0) {
+
+                    }
+                    break;
+            }
+            godUI.HideUI();
+            CurrentDay++;
+            currentState = GameState.ChoosingCard;
+        }
+    }
+
     private void DrawCards() {
         CardData card1 = cardData[Random.Range(0, cardData.Length)];
         CardData card2 = cardData[Random.Range(0, cardData.Length)];
@@ -184,5 +210,6 @@ public class GameMain : MonoBehaviour {
 
     private void OnDestroy() {
         uiManager.cardClickedEvent -= CardClickedHandler;
+        godUI.sacrificeClickedEvent -= SacrificeClickedHandler;
     }
 }
