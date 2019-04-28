@@ -18,16 +18,19 @@ MonoBehaviour:
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
+  discardOnUse: 0
   effects:
   - chance: 0.8
     villagerChange: 2
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: The house is built successfully!
   - chance: 0.2
     villagerChange: -2
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: The house collapses on them at dinner.

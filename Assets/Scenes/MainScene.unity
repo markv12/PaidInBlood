@@ -2099,13 +2099,8 @@ MonoBehaviour:
   dayIndicator: {fileID: 2117408120}
   godUI: {fileID: 1205555301}
   godList: {fileID: 11400000, guid: c731f26af92124f4b8614a1d336306e8, type: 2}
-  cardData:
-  - {fileID: 11400000, guid: 000f6724dfc70ba40a7a8e56128e339e, type: 2}
-  - {fileID: 11400000, guid: 684158c53e99f324c96a817ecc83f971, type: 2}
-  - {fileID: 11400000, guid: b88fea9cbb7b8904da02f674405094bb, type: 2}
-  - {fileID: 11400000, guid: cd3a0c5c4b2a4ba4faf942a39eff9515, type: 2}
-  - {fileID: 11400000, guid: 8a4aa309a3f4f3c41ae306af8e697b6b, type: 2}
-  - {fileID: 11400000, guid: b415c046b09dede4e859ef3300d3daa3, type: 2}
+  deck:
+    startingDeck: {fileID: 11400000, guid: 9aead4ff8f8f5ac42a01e0f75f9d35e0, type: 2}
 --- !u!4 &1024100935
 Transform:
   m_ObjectHideFlags: 0
