@@ -243,7 +243,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5e5621285b4a86d4ea6dd43f4f94818e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 933b723ca0f8a8042a9d6fae794d6b26, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1815,7 +1815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theSource: {fileID: 687589140}
   maxVolume: 0.7
-  peaceClip: {fileID: 8300000, guid: f8329b9aff699df4eb9c22e110535ff9, type: 3}
+  peaceClip: {fileID: 8300000, guid: 2875f12923b889c4b81e1b73f6c7d01f, type: 3}
   godClip: {fileID: 8300000, guid: 73c04e759b014ae46afdc9a727a3f82b, type: 3}
 --- !u!4 &687589142
 Transform:
@@ -2101,8 +2101,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1071.8, y: 662.3}
+  m_AnchoredPosition: {x: -7.2, y: 3.6}
+  m_SizeDelta: {x: 1030.5, y: 732.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &759598712
 MonoBehaviour:
@@ -2127,14 +2127,15 @@ MonoBehaviour:
   m_text: Some bad shit happened.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 44cb8afeb8f889b43a24c6c9bdc5bd68, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: b45ddc6851abbd04c9de2afee8302809, type: 2}
+  m_sharedMaterial: {fileID: 21617614025175930, guid: 44cb8afeb8f889b43a24c6c9bdc5bd68,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2152,8 +2153,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -53,7 +53,6 @@ public class GameOverManager : MonoBehaviour {
         background.color = Color.white;
         mainGroup.alpha = 0;
         yield return null;
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        SceneManager.LoadScene("TitleScene");
     }
 }
