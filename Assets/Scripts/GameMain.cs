@@ -122,7 +122,7 @@ public class GameMain : MonoBehaviour {
             CardData.DelayedEffect dE = delayedEffects[i];
             if(dE.dayOfActivation <= CurrentDay){
                 CardData.CardEffectChance e = PickEffect(dE.effects);
-                ApplyEffect(e);
+                ApplyEffect(e, null, EffectEventType.LongTerm);
                 messageAdded = true;
                 delayedEffects.RemoveAt(i);
                 i--;
@@ -164,7 +164,7 @@ public class GameMain : MonoBehaviour {
     private void CardClickedHandler(CardData data) {
         if (currentState == GameState.ChoosingCard) {
             CardData.CardEffectChance choosenEffect = PickEffect(data.effects);
-            ApplyEffect(choosenEffect, data.defaultStartText);
+            ApplyEffect(choosenEffect, data.defaultStartText, EffectEventType.Normal);
             DisplayMessageList(BeginNextTurn, 0);
 
             for (int i = 0; i < data.delayedEffects.Length; i++)
@@ -192,7 +192,7 @@ public class GameMain : MonoBehaviour {
         return null;
     }
 
-    private void ApplyEffect(CardData.CardEffectChance effect, string defaultStartText = null, EffectEventType type = EffectEventType.Normal) {
+    private void ApplyEffect(CardData.CardEffectChance effect, string defaultStartText, EffectEventType type) {
         string message = "";
         if (effect != null) {
             Villagers += effect.villagerChange;
@@ -332,6 +332,7 @@ public class GameMain : MonoBehaviour {
 
 public enum EffectEventType {
     Normal,
+    LongTerm,
     God
 }
 

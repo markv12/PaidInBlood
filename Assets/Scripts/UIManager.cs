@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
     public CardFrame rightCard;
     public Image effectBackground;
     public Sprite normalEventSprite;
+    public Sprite longTermEventSprite;
     public Sprite godEventSprite;
 
     private void Awake() {
@@ -184,6 +185,8 @@ public class UIManager : MonoBehaviour {
         switch (type) {
             case EffectEventType.Normal:
                 return normalEventSprite;
+            case EffectEventType.LongTerm:
+                return longTermEventSprite;
             case EffectEventType.God:
                 return godEventSprite;
         }
