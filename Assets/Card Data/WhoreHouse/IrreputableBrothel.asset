@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: IrreputableBrothel
   m_EditorClassIdentifier: 
   title: Disreputable Brothel
-  description: You know what the people want! Bring temptation and lust to help further
+  description: 'You know what the people want! Bring temptation and lust to help further
     develop your population.
+
+'
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
@@ -26,7 +28,7 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: Brothel construction begins
+    description: Brothel construction takes 5 turns and unlocks new cards on completion.
   delayedEffects:
   - duration: 5
     dayOfActivation: 5
@@ -40,4 +42,9 @@ MonoBehaviour:
       unlockedCards:
       - {fileID: 11400000, guid: dc4d232ec9ab4bf43bf3ff5e507c86e7, type: 2}
       - {fileID: 11400000, guid: b26ebd4bbb2ce0f4384f251ebc3bce3a, type: 2}
-      description: Brothel construction finished. The village rejoices!
+      description: 'Brothel construction finished. The village rejoices!
+
+
+        "Carnal Desires" card UNLOCKED
+
+        "Upgrade Brothel" card UNLOCKED'

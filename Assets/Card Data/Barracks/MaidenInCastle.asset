@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: MaidenInCastle
   m_EditorClassIdentifier: 
   title: Maiden in a far off castle
-  description: Send a group of villagers to save a young maiden trapped in a far off
-    castle. Risk their lives in the process though.
+  description: 'Send a group of villagers to save a young maiden trapped in a far
+    off castle. Risk their lives in the process though.
+
+
+    10 villagers leave the village for 5 turns.
+
+    75% chance of them returning with the maiden.'
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
@@ -26,9 +31,7 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: '10 villagers leave the village valiantly
-
-      75% chance of them returning with the maiden'
+    description: "Villagers bravley leave the village. \n"
   delayedEffects:
   - duration: 5
     dayOfActivation: 8
@@ -40,7 +43,10 @@ MonoBehaviour:
       maidenChange: 1
       youngLadChange: 0
       unlockedCards: []
-      description: Expedition successful. All men return with the maiden safely
+      description: 'Expedition successful!
+
+
+        All men return with the maiden safely.'
     - chance: 0.25
       villagerChange: 0
       goatChange: 0

@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: ReputableBrothel
   m_EditorClassIdentifier: 
   title: Reputable Brothel
-  description: Your Brothel's parties' stories make it to neighbouring cities and
+  description: 'Your Brothel''s parties'' stories make it to neighbouring cities and
     everybody wants a piece of the action. Better Sinning opportunities.
+
+
+    Unlocks a new card. Completes in 5 turns.'
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
@@ -26,7 +29,7 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: Brothel upgrade begins
+    description: Brothel upgrade construction begins.
   delayedEffects:
   - duration: 5
     dayOfActivation: 2
@@ -39,4 +42,7 @@ MonoBehaviour:
       youngLadChange: 0
       unlockedCards:
       - {fileID: 11400000, guid: 6e119c5fc70c42d4298af54e8330fd64, type: 2}
-      description: Brothel upgrade finished. The village rejoices!
+      description: 'Brothel upgrade finished. The village rejoices!
+
+
+        "Special Event" card UNLOCKED'

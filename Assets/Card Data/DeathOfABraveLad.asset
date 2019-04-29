@@ -17,16 +17,14 @@ MonoBehaviour:
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  discardOnUse: 0
   effects:
-  - chance: 1
-    villagerChange: 0
-    goatChange: 0
-    maidenChange: 0
-    youngLadChange: 1
-    description: He agrees to sacrifice himself for the village.
   - chance: 1
     villagerChange: -6
     goatChange: 0
     maidenChange: 0
-    youngLadChange: 0
-    description: People leave the village in despair.
+    youngLadChange: 1
+    unlockedCards: []
+    description: He agrees to sacrifice himself for the village. People leave the
+      village in despair.
+  delayedEffects: []

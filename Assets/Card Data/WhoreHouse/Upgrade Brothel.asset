@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Upgrade Brothel
   m_EditorClassIdentifier: 
   title: Upgrade Brothel
-  description: With bigger infrastructure come bigger parties. Enables Orgies.
+  description: 'With bigger infrastructure come bigger parties. Enables Orgies.
+
+
+    Unlocks new cards. Completes in 5 turns.'
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
@@ -25,10 +28,10 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: Brothel upgrade begins
+    description: Brothel upgrade begins.
   delayedEffects:
   - duration: 5
-    dayOfActivation: 0
+    dayOfActivation: 13
     notificaitonText: Brothel upgrade finishes in {0} turns
     effects:
     - chance: 1
@@ -39,4 +42,5 @@ MonoBehaviour:
       unlockedCards:
       - {fileID: 11400000, guid: a0a35f4f9327f8d4ba0d3ff2c9de37c3, type: 2}
       - {fileID: 11400000, guid: 4d5899de0d003de45a23b69d470a18e7, type: 2}
-      description: Brothel upgrade finished. The village rejoices!
+      description: "Brothel upgrade finished. The village rejoices!\n\n\"Reputable
+        Brothel\" card UNLOCKED \n\"Orgy\" card UNLOCKED"

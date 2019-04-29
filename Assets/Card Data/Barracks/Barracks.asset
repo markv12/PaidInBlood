@@ -13,13 +13,21 @@ MonoBehaviour:
   m_Name: Barracks
   m_EditorClassIdentifier: 
   title: Barracks
-  description: Give the common folk some basic training in combat allowing them to
-    go on expeditions.
+  description: "Give the common folk some basic training in combat allowing them to
+    go on expeditions. \n\nExpeditions are multi-day commitments that have a chance
+    for a great result.Completes in 5 turns.  "
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
   discardOnUse: 1
-  effects: []
+  effects:
+  - chance: 1
+    villagerChange: 0
+    goatChange: 0
+    maidenChange: 0
+    youngLadChange: 0
+    unlockedCards: []
+    description: Construction of the Barracks begins.
   delayedEffects:
   - duration: 5
     dayOfActivation: 9
@@ -33,4 +41,7 @@ MonoBehaviour:
       unlockedCards:
       - {fileID: 11400000, guid: 028f7581a00c5414aaa89c14b9252fb3, type: 2}
       - {fileID: 11400000, guid: 2d34a939da122464ca52b550967cb42e, type: 2}
-      description: Barracks construction finished
+      description: 'Barracks construction finished
+
+
+        "Expedition" cards UNLOCKED'
