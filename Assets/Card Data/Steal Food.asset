@@ -10,30 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c11d7358e693b64e9048007ba7f742d, type: 3}
-  m_Name: Build a Public Toilet
+  m_Name: Steal Food
   m_EditorClassIdentifier: 
-  title: Build a Public Toilet
-  description: Build a public toilet where villagers squat on a plank of wood and
-    poop into a giant vat. Makes the town more sanitary but if the plank breaks...
+  title: Steal Food
+  description: Steal food from another village.
   defaultStartText: 
-  art: {fileID: 21300000, guid: fab8038b821f34445b517731909440b6, type: 3}
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 0
   effects:
-  - chance: 0.6
-    villagerChange: 4
+  - chance: 0.8
+    villagerChange: 2
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: The plank breaks when 4 people try to climb on it. They all drown
-      in their own poop.
+    description: 'You steal food and get away with it! '
     audioClip: {fileID: 0}
-  - chance: 0.4
-    villagerChange: 3
+  - chance: 0.2
+    villagerChange: -2
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: The toilet provides better sanitation and less people die.
+    description: Your theives get caught and are gutted for their crime.
     audioClip: {fileID: 0}
   delayedEffects: []

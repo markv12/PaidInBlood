@@ -10,30 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c11d7358e693b64e9048007ba7f742d, type: 3}
-  m_Name: Build a Public Toilet
+  m_Name: MaulingOfMaiden
   m_EditorClassIdentifier: 
-  title: Build a Public Toilet
-  description: Build a public toilet where villagers squat on a plank of wood and
-    poop into a giant vat. Makes the town more sanitary but if the plank breaks...
+  title: 'Mauling of a Maiden '
+  description: A fair maiden passing buy is attacked by brigands. Risk your villagers
+    to save her (for now)?
   defaultStartText: 
-  art: {fileID: 21300000, guid: fab8038b821f34445b517731909440b6, type: 3}
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 0
   effects:
-  - chance: 0.6
-    villagerChange: 4
-    goatChange: 0
-    maidenChange: 0
-    youngLadChange: 0
-    unlockedCards: []
-    description: The plank breaks when 4 people try to climb on it. They all drown
-      in their own poop.
-    audioClip: {fileID: 0}
   - chance: 0.4
-    villagerChange: 3
+    villagerChange: 0
+    goatChange: 0
+    maidenChange: 1
+    youngLadChange: 0
+    unlockedCards: []
+    description: You save her from the brigands and lock her in the sacrifice chamber!
+    audioClip: {fileID: 0}
+  - chance: 0.6
+    villagerChange: -6
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: The toilet provides better sanitation and less people die.
+    description: Several of your men die trying save her and you lose her.
     audioClip: {fileID: 0}
   delayedEffects: []
