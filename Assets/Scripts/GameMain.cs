@@ -153,7 +153,7 @@ public class GameMain : MonoBehaviour {
     private void CardClickedHandler(CardData data) {
         if (currentState == GameState.ChoosingCard) {
             CardData.CardEffectChance choosenEffect = PickEffect(data.effects);
-            ApplyEffect(choosenEffect);
+            ApplyEffect(choosenEffect, data.defaultStartText);
             DisplayMessageList(BeginNextTurn, UIManager.CARD_MOVE_TIME);
 
             for (int i = 0; i < data.delayedEffects.Length; i++)
@@ -181,7 +181,7 @@ public class GameMain : MonoBehaviour {
         return null;
     }
 
-    private void ApplyEffect(CardData.CardEffectChance effect) {
+    private void ApplyEffect(CardData.CardEffectChance effect, string defaultStartText = null) {
         string message = "";
         if (effect != null) {
             Villagers += effect.villagerChange;
@@ -191,7 +191,11 @@ public class GameMain : MonoBehaviour {
             deck.AddToDeck(effect.unlockedCards);
             message += CardData.GetEffectText(effect) + System.Environment.NewLine;
         } else {
-            message = "Nothing Happened";
+            if(defaultStartText != null) {
+                message = defaultStartText;
+            } else {
+                message = "Nothing Happened";
+            }
         }
         AddEventMessage(message);
     }

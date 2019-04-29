@@ -65,7 +65,7 @@ public class CardFrame : MonoBehaviour {
             result.Append(CardData.GetEffectText(effect));
             result.AppendLine();
         }
-        if (totalChance < 1.0) {
+        if (totalChance < 1.0 && data.effects.Length > 0) {
             Debug.LogError(data.title + "Percentages don't add up to 1: " + totalChance);
         }
         return result.ToString();

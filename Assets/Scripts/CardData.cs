@@ -7,6 +7,7 @@ public class CardData : ScriptableObject {
     public string title;
     [TextArea]
     public string description;
+    public string defaultStartText;
     public Sprite cardBackground;
     public Sprite artBackground;
     public Sprite art;
