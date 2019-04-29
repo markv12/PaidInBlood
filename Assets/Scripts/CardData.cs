@@ -37,6 +37,7 @@ public class CardData : ScriptableObject {
         public CardData[] unlockedCards;
         [TextArea]
         public string description;
+        public AudioClip audioClip;
     }
 
     public static string GetEffectText(CardEffectChance effect) {

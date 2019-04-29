@@ -15,6 +15,10 @@ public class GameMain : MonoBehaviour {
     private TMP_Text youngLadCountText;
 
     [SerializeField]
+    private BackgroundMusic backgroundMusic;
+    [SerializeField]
+    private AudioSource effectAudioSource;
+    [SerializeField]
     private OverTimeEffectsUIManager notificationManager;
     [SerializeField]
     private UIManager uiManager;
@@ -22,6 +26,8 @@ public class GameMain : MonoBehaviour {
     private DayIndicator dayIndicator;
     [SerializeField]
     private GodUI godUI;
+    [SerializeField]
+    private GameOverManager gameOverManager;
 
     [SerializeField]
     private GodList godList;
@@ -67,7 +73,7 @@ public class GameMain : MonoBehaviour {
         get { return _currentState; }
         set {
             _currentState = value;
-            Debug.Log(Time.frameCount + " State set: " + value);
+            //Debug.Log(Time.frameCount + " State set: " + value);
         }
     }
 
@@ -93,10 +99,11 @@ public class GameMain : MonoBehaviour {
         uiManager.cardClickedEvent += CardClickedHandler;
         godUI.sacrificeClickedEvent += SacrificeClickedHandler;
         DrawCards();
-        Villagers = 30;
+        Villagers = 3;
         Goats = 1;
         Maidens = 1;
         YoungLads = 1;
+        backgroundMusic.PlayMusic(MusicType.Peaceful);
     }
 
     void DayChangedHandler(int curDay, System.Action onDayComplete){
@@ -124,15 +131,21 @@ public class GameMain : MonoBehaviour {
     private void BeginNextTurn() {
         uiManager.HideCards();
         GoToNextDay(delegate {
-            if (IsDaySacrificeDay(CurrentDay)) {
-                uiManager.HideCards();
-                System.Array values = System.Enum.GetValues(typeof(GodType));
-                God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
-                godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
-                currentState = GameState.InteractingWithGod;
+            if(Villagers <= 0) {
+                gameOverManager.ShowGameOver();
+                currentState = GameState.none;
             } else {
-                ResetCards();
-                currentState = GameState.ChoosingCard;
+                if (IsDaySacrificeDay(CurrentDay)) {
+                    uiManager.HideCards();
+                    System.Array values = System.Enum.GetValues(typeof(GodType));
+                    God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
+                    godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
+                    backgroundMusic.PlayMusic(MusicType.God);
+                    currentState = GameState.InteractingWithGod;
+                } else {
+                    ResetCards();
+                    currentState = GameState.ChoosingCard;
+                }
             }
         });
     }
@@ -210,7 +223,9 @@ public class GameMain : MonoBehaviour {
 
     private void SacrificeClickedHandler(God god, bool successful) {
         if(currentState == GameState.InteractingWithGod) {
-            RemoveSacrifice(god.type);
+            if (successful) {
+                RemoveSacrifice(god.type);
+            }
             CardData.CardEffectChance choosenEffect;
             if (successful) {
                 choosenEffect = PickEffect(god.goodChances);
@@ -222,6 +237,7 @@ public class GameMain : MonoBehaviour {
                 GoToNextDay(delegate {
                     godUI.HideUI();
                     DrawCards();
+                    backgroundMusic.PlayMusic(MusicType.Peaceful);
                     currentState = GameState.ChoosingCard;
                 });
             },0);

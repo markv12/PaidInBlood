@@ -1,0 +1,57 @@
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class GameOverManager : MonoBehaviour {
+
+    public CanvasGroup mainGroup;
+    public Image background;
+    public Button restartButton;
+
+    private void Awake() {
+        restartButton.onClick.AddListener(delegate {
+            this.EnsureCoroutineStopped(ref showGameOverRoutine);
+            background.color = Color.black;
+            mainGroup.alpha = 1;
+            StartCoroutine(FadeToRestart());
+        });
+    }
+
+    private const float GAME_OVER_FADE_TIME = 1.333f;
+    private Coroutine showGameOverRoutine = null;
+    public void ShowGameOver() {
+        mainGroup.alpha = 0;
+        gameObject.SetActive(true);
+        showGameOverRoutine = StartCoroutine(_ShowGameOver());
+    }
+    private IEnumerator _ShowGameOver() {
+        float progress = 0;
+        float elapsedTime = 0;
+        while (progress <= 1) {
+            progress = elapsedTime / GAME_OVER_FADE_TIME;
+            elapsedTime += Time.unscaledDeltaTime;
+            background.color = Color.Lerp(Color.clear, Color.black, progress);
+            mainGroup.alpha = progress;
+            yield return null;
+        }
+        background.color = Color.black;
+        mainGroup.alpha = 1;
+        showGameOverRoutine = null;
+    }
+
+    private IEnumerator FadeToRestart() {
+        float progress = 0;
+        float elapsedTime = 0;
+        while (progress <= 1) {
+            progress = elapsedTime / GAME_OVER_FADE_TIME;
+            elapsedTime += Time.unscaledDeltaTime;
+            mainGroup.alpha = 1 - progress;
+            yield return null;
+        }
+        mainGroup.alpha = 0;
+        yield return null;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+}
