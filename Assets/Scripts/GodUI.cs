@@ -32,21 +32,21 @@ public class GodUI : MonoBehaviour {
         buttonGroup.alpha = 0;
     }
 
-    private const float BACKGROUND_FADE_TIME = 2.2f;
-    private const float GOD_FADE_TIME = 3f;
+    private const float BACKGROUND_FADE_TIME = 1f;
+    private const float GOD_FADE_TIME = 2.8f;
     private const float BUTTON_FADE_TIME = 0.666f;
-    private static readonly Color TRANS_BLACK = new Color(0,0,0,0.8f);
+    private static readonly Color TRU_BLACK = new Color(0,0,0,1f);
     private static readonly Color GOD_COLOR = new Color(0.9f, 0.9f, 0.9f, 1);
     private IEnumerator ShowUI(God god, bool sacrificePossible) {
         godImage.sprite = god.mainSprite;
-        sacrificeButtonText.text = god.sacrificeButtonText;
+        sacrificeButtonText.text = sacrificePossible ? god.sacrificeButtonText : "Suffer the Consequences";
         float progress = 0;
         float elapsedTime = 0;
         mistObject.SetActive(true);
         while (progress <= 1) {
             progress = elapsedTime / BACKGROUND_FADE_TIME;
             elapsedTime += Time.unscaledDeltaTime;
-            background.color = Color.Lerp(Color.clear, TRANS_BLACK, progress);
+            background.color = Color.Lerp(Color.clear, TRU_BLACK, progress);
             mistGroup.alpha = progress;
             yield return null;
         }
@@ -57,11 +57,11 @@ public class GodUI : MonoBehaviour {
             elapsedTime += Time.unscaledDeltaTime;
             float firstHalfProgress = Mathf.Min(1, progress * 2);
             if (progress <= 0.5f) {
-                godImage.color = Color.Lerp(Color.clear, TRANS_BLACK, firstHalfProgress);
+                godImage.color = Color.Lerp(Color.clear, TRU_BLACK, firstHalfProgress);
             }
             float secondHalfProgress = Mathf.Max(0, (progress * 2)-1);
             if (progress > 0.5f) {
-                godImage.color = Color.Lerp(TRANS_BLACK, GOD_COLOR, secondHalfProgress);
+                godImage.color = Color.Lerp(TRU_BLACK, GOD_COLOR, secondHalfProgress);
             }
             float easedProgress = Easing.easeInOutSine(0, 1, progress);
             godTransform.localScale = Vector2.Lerp(Vector2.zero, Vector2.one, easedProgress);
@@ -102,11 +102,11 @@ public class GodUI : MonoBehaviour {
             elapsedTime += Time.unscaledDeltaTime;
             float firstHalfProgress = Mathf.Min(1, progress * 2);
             if (progress <= 0.5f) {
-                godImage.color = Color.Lerp(GOD_COLOR, TRANS_BLACK, firstHalfProgress);
+                godImage.color = Color.Lerp(GOD_COLOR, TRU_BLACK, firstHalfProgress);
             }
             float secondHalfProgress = Mathf.Max(0, (progress * 2) - 1);
             if (progress > 0.5f) {
-                godImage.color = Color.Lerp(TRANS_BLACK, Color.clear, secondHalfProgress);
+                godImage.color = Color.Lerp(TRU_BLACK, Color.clear, secondHalfProgress);
             }
          
             float easedProgress = Easing.easeInOutSine(0, 1, progress);
@@ -118,7 +118,7 @@ public class GodUI : MonoBehaviour {
         while (progress <= 1) {
             progress = elapsedTime / BACKGROUND_FADE_TIME;
             elapsedTime += Time.unscaledDeltaTime;
-            background.color = Color.Lerp(TRANS_BLACK, Color.clear, progress);
+            background.color = Color.Lerp(TRU_BLACK, Color.clear, progress);
             mistGroup.alpha = 1- progress;
             yield return null;
         }

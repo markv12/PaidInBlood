@@ -70,21 +70,18 @@ public class GameMain : MonoBehaviour {
             Debug.Log(Time.frameCount + " State set: " + value);
         }
     }
-    public delegate void DayChangedDelegate(int prevDay, int currentDay);
-    public event DayChangedDelegate DayChangedEvent;
 
     private int currentDay = 0;
     public int CurrentDay {
         get {
             return currentDay;
         }
-        set {
-            int prevDay = currentDay;
-            currentDay = value;
-            dayIndicator.GoToDayNumber(currentDay);
-            DayChangedEvent?.Invoke(prevDay, currentDay);
-        }
     }
+    private void GoToNextDay(System.Action onDayComplete) {
+        currentDay += 1;
+        dayIndicator.GoToDayNumber(currentDay, delegate { DayChangedHandler(currentDay, onDayComplete); });
+    }
+
     List<CardData.DelayedEffect> delayedEffects = new List<CardData.DelayedEffect>();
 
 
@@ -100,62 +97,51 @@ public class GameMain : MonoBehaviour {
         Goats = 1;
         Maidens = 1;
         YoungLads = 1;
-        DayChangedEvent += DayChangedHandler;
     }
 
-    void DayChangedHandler(int prev, int curDay){
-        for (int i = 0; i < delayedEffects.Count; i++)
-        {
+    void DayChangedHandler(int curDay, System.Action onDayComplete){
+        bool messageAdded = false;
+        for (int i = 0; i < delayedEffects.Count; i++){
             CardData.DelayedEffect dE = delayedEffects[i];
             if(dE.dayOfActivation <= CurrentDay){
                 CardData.CardEffectChance e = PickEffect(dE.effects);
                 ApplyEffect(e);
+                messageAdded = true;
                 delayedEffects.RemoveAt(i);
                 i--;
-                ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
-                currentState = GameState.ViewingDayStartEffect;
-                currentState = GameState.ViewingDayStartEffect;
                 // Debug.Log(message);
                 //show message
             }
         }
+        if (messageAdded) {
+            DisplayMessageList(delegate { onDayComplete?.Invoke(); }, UIManager.CARD_MOVE_TIME);
+        } else {
+            onDayComplete?.Invoke();
+        }
         notificationManager.RefreshNotificaitons(CurrentDay);
     }
 
-    private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
-            if (currentState == GameState.ViewingDayEndEffect) {
-                if (uiManager.EffectPanelOpen()) {
-                    if (eventMessages.Count > 0) {
-                        ShowNextEventMessage(0.4f);
-                        uiManager.CloseEffectPanel(0.3f);
-                    } else {
-                        CurrentDay++;
-                        if (IsDaySacrificeDay(CurrentDay)) {
-                            uiManager.HideCards();
-                            System.Array values = System.Enum.GetValues(typeof(GodType));
-                            God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
-                            godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
-                            currentState = GameState.InteractingWithGod;
-                        } else {
-                            ResetCards();
-                            currentState = GameState.ChoosingCard;
-                        }
-                        uiManager.CloseEffectPanel();
-                    }
-                }
-            } else if(currentState == GameState.ViewingDayStartEffect) {
+    private void BeginNextTurn() {
+        uiManager.HideCards();
+        GoToNextDay(delegate {
+            if (IsDaySacrificeDay(CurrentDay)) {
+                uiManager.HideCards();
+                System.Array values = System.Enum.GetValues(typeof(GodType));
+                God randomGod = godList.GetGod((GodType)values.GetValue(Random.Range(0, values.Length)));
+                godUI.ShowGod(randomGod, CanSacrifice(randomGod.type));
+                currentState = GameState.InteractingWithGod;
+            } else {
+                ResetCards();
                 currentState = GameState.ChoosingCard;
-                uiManager.CloseEffectPanel();
             }
-        }
+        });
     }
 
     private void CardClickedHandler(CardData data) {
         if (currentState == GameState.ChoosingCard) {
             CardData.CardEffectChance choosenEffect = PickEffect(data.effects);
             ApplyEffect(choosenEffect);
-            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
+            DisplayMessageList(BeginNextTurn, UIManager.CARD_MOVE_TIME);
 
             for (int i = 0; i < data.delayedEffects.Length; i++)
             {
@@ -200,18 +186,30 @@ public class GameMain : MonoBehaviour {
     private void AddEventMessage(string message) {
         eventMessages.Add(message);
     }
-    private void ShowNextEventMessage(float waitTime) {
-        if (eventMessages.Count > 0) {
-            string nextMessage = eventMessages[0];
-            Debug.Log("SHOW: " + nextMessage);
-            uiManager.ShowEffect(nextMessage, waitTime);
-            currentState = GameState.ViewingDayEndEffect;
-            eventMessages.RemoveAt(0);
+    private void DisplayMessageList(System.Action onComplete, float waitTime) {
+        StartCoroutine(_DisplayMessageList(onComplete, waitTime));
+    }
+    private IEnumerator _DisplayMessageList(System.Action onComplete, float waitTime) {
+        currentState = GameState.ViewingEffects;
+        for (int i = 0; i < eventMessages.Count; i++) {
+            string nextMessage = eventMessages[i];
+            if (i == 0) {
+                yield return StartCoroutine(uiManager.ShowEffect(nextMessage, waitTime));
+            } else {
+                yield return StartCoroutine(uiManager.CloseEffectPanel(uiManager.ShowEffect(nextMessage)));
+            }
+            while (!Input.GetMouseButtonDown(0)){
+                yield return null;
+            }
         }
+        onComplete?.Invoke();
+        StartCoroutine(uiManager.CloseEffectPanel(null));
+        eventMessages.Clear();
     }
 
     private void SacrificeClickedHandler(God god, bool successful) {
         if(currentState == GameState.InteractingWithGod) {
+            RemoveSacrifice(god.type);
             CardData.CardEffectChance choosenEffect;
             if (successful) {
                 choosenEffect = PickEffect(god.goodChances);
@@ -219,10 +217,13 @@ public class GameMain : MonoBehaviour {
                 choosenEffect = PickEffect(god.badChances);
             }
             ApplyEffect(choosenEffect);
-            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
-
-            godUI.HideUI();
-            CurrentDay++;
+            DisplayMessageList(delegate {
+                GoToNextDay(delegate {
+                    godUI.HideUI();
+                    DrawCards();
+                    currentState = GameState.ChoosingCard;
+                });
+            },0);
         }
     }
 
@@ -241,23 +242,10 @@ public class GameMain : MonoBehaviour {
     }
 
     private enum GameState {
-        ViewingDayStartEffect,
+        none,
         ChoosingCard,
-        ViewingDayEndEffect,
+        ViewingEffects,
         InteractingWithGod
-    }
-
-    private static string GetSacrificeText(GodType type) {
-        switch (type) {
-            case GodType.Frog:
-                return "Sacrifice Maiden";
-            case GodType.Goat:
-                return "Sacrifice Goat";
-            case GodType.Rabbit:
-                return "Sacrifice Young Lad";
-            default:
-                return "";
-        }
     }
 
     private bool CanSacrifice(GodType type) {
@@ -270,6 +258,20 @@ public class GameMain : MonoBehaviour {
                 return YoungLads > 0;
             default:
                 return false;
+        }
+    }
+
+    private void RemoveSacrifice(GodType type) {
+        switch (type) {
+            case GodType.Frog:
+                Maidens--;
+                break;
+            case GodType.Goat:
+                Goats--;
+                break;
+            case GodType.Rabbit:
+                YoungLads--;
+                break;
         }
     }
 

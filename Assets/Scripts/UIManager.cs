@@ -51,15 +51,11 @@ public class UIManager : MonoBehaviour {
         StartCoroutine(MoveCardsOut());
     }
 
-    private Coroutine showRoutine;
-    public void ShowEffect(string effectMessage, float waitTime = 0, float fadeTime = FADE_TIME) {
-        this.EnsureCoroutineStopped(ref showRoutine);
-        showRoutine = StartCoroutine(FadeEffectPanel(effectMessage, true, waitTime, fadeTime));
+    public IEnumerator ShowEffect(string effectMessage, float waitTime = 0) {
+        return FadeEffectPanel(effectMessage, true, waitTime, FADE_TIME, null);
     }
-    private Coroutine hideRoutine;
-    public void CloseEffectPanel(float fadeTime = FADE_TIME) {
-        this.EnsureCoroutineStopped(ref hideRoutine);
-        hideRoutine = StartCoroutine(FadeEffectPanel("", false, 0, fadeTime));
+    public IEnumerator CloseEffectPanel(IEnumerator onComplete) {
+        return FadeEffectPanel("", false, 0, FADE_TIME, onComplete);
     }
 
     private void OnDestroy() {
@@ -73,6 +69,7 @@ public class UIManager : MonoBehaviour {
     private static readonly Vector2 leftEndPosition = new Vector2(-300, 0);
     private static readonly Vector2 rightEndPosition = new Vector2(300, 0);
     private IEnumerator MoveCardsIn() {
+        Debug.Log("cards moved in");
         float progress = 0;
         float elapsedTime = 0;
         while (progress <= 1) {
@@ -91,6 +88,7 @@ public class UIManager : MonoBehaviour {
 
     private const float CARD_MOVE_OUT_TIME = 0.5f;
     private IEnumerator MoveCardsOut() {
+        Debug.Log("cards moved out");
         Vector2 leftStart = leftCard.rectT.anchoredPosition;
         Vector2 rightStart = rightCard.rectT.anchoredPosition;
         Vector2 leftEnd = new Vector2(leftCard.rectT.anchoredPosition.x, -975);
@@ -137,13 +135,12 @@ public class UIManager : MonoBehaviour {
         showCard.rectT.anchoredPosition = showEndPosition;
     }
 
-    private const float FADE_TIME = 0.4f;
-    private IEnumerator FadeEffectPanel(string message, bool fadeIn, float waitTime, float fadeTime) {
+    private const float FADE_TIME = 0.3f;
+    private IEnumerator FadeEffectPanel(string message, bool fadeIn, float waitTime, float fadeTime, IEnumerator onComplete) {
         if (waitTime > 0) {
             yield return new WaitForSeconds(waitTime);
         }
         if (fadeIn) {
-            this.EnsureCoroutineStopped(ref hideRoutine);
             effectUI.SetActive(true);
             effectText.text = message;
         }
@@ -161,10 +158,9 @@ public class UIManager : MonoBehaviour {
         if (!fadeIn) {
             effectUI.SetActive(false);
             effectText.text = message;
-            hideRoutine = null;
         }
-        if (fadeIn) {
-            showRoutine = null;
+        if(onComplete != null) {
+            yield return StartCoroutine(onComplete);
         }
     }
 

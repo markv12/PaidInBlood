@@ -28,7 +28,7 @@ public class DayIndicator : MonoBehaviour {
 
     private const float SPACE_PER_NUMBER = 110;
     private Coroutine moveRoutine;
-    public void GoToDayNumber(int dayNumber) {
+    public void GoToDayNumber(int dayNumber, System.Action onComplete) {
         int startNumber = dayNumber - NUMBER_COUNT / 2;
         for (int i = 0; i < numberTexts.Count; i++) {
             int theNumber = startNumber + i;
@@ -42,11 +42,11 @@ public class DayIndicator : MonoBehaviour {
 
         float xPos = -((float)dayNumber * SPACE_PER_NUMBER);
         this.EnsureCoroutineStopped(ref moveRoutine);
-        moveRoutine = StartCoroutine(MoveNumberLine(xPos));
+        moveRoutine = StartCoroutine(MoveNumberLine(xPos, onComplete));
     }
 
-    private const float MOVE_TIME = 0.6f;
-    private IEnumerator MoveNumberLine(float xPos) {
+    private const float MOVE_TIME = 0.5f;
+    private IEnumerator MoveNumberLine(float xPos, System.Action onComplete) {
         Vector2 startPos = mainT.anchoredPosition;
         Vector2 endPos = new Vector2(xPos, startPos.y);
         float progress = 0;
@@ -60,6 +60,7 @@ public class DayIndicator : MonoBehaviour {
         }
         mainT.anchoredPosition = endPos;
         moveRoutine = null;
+        onComplete?.Invoke();
     }
 
     private static Color GetColorForDay(int day) {
