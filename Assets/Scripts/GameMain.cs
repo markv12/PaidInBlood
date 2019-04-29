@@ -109,7 +109,7 @@ public class GameMain : MonoBehaviour {
         uiManager.cardClickedEvent += CardClickedHandler;
         godUI.sacrificeClickedEvent += SacrificeClickedHandler;
         DrawCards();
-        Villagers = 10;
+        Villagers = 15;
         Goats = 0;
         Maidens = 0;
         YoungLads = 0;

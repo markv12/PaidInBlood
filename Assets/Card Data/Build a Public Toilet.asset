@@ -20,7 +20,7 @@ MonoBehaviour:
   discardOnUse: 0
   effects:
   - chance: 0.6
-    villagerChange: 4
+    villagerChange: -4
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0

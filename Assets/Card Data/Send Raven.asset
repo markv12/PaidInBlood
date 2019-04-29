@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Send Raven
   m_EditorClassIdentifier: 
   title: 'Send Ravens '
-  description: Send a Ravens holding messages that preach the gosple of your Gods
-    to other towns.
+  description: Send ravens holding messages that preach the gospel of your gods to
+    other towns.
   defaultStartText: 
   art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 0
@@ -33,6 +33,6 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: 'The Ravens never return and no others join your village  '
+    description: 'The ravens never return and no others join your village  '
     audioClip: {fileID: 0}
   delayedEffects: []

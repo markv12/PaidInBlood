@@ -32,7 +32,7 @@ MonoBehaviour:
         it to strengthen the bonding of a few buildings. The village prospers moderately. "
       audioClip: {fileID: 0}
     - chance: 0.5
-      villagerChange: 15
+      villagerChange: 10
       goatChange: 0
       maidenChange: 0
       youngLadChange: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
         their bodies as a reminder of what happens to those who do not provide."
       audioClip: {fileID: 0}
     - chance: 0.5
-      villagerChange: -15
+      villagerChange: -10
       goatChange: 0
       maidenChange: 0
       youngLadChange: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
         causing the crops to grow rapidly. The town prospers moderately."
       audioClip: {fileID: 0}
     - chance: 0.5
-      villagerChange: 15
+      villagerChange: 8
       goatChange: 0
       maidenChange: 0
       youngLadChange: 0
@@ -109,14 +109,14 @@ MonoBehaviour:
         5 villagers into a crimson paste and bucking the remains into the public square. "
       audioClip: {fileID: 0}
     - chance: 0.5
-      villagerChange: -15
+      villagerChange: -8
       goatChange: 0
       maidenChange: 0
       youngLadChange: 0
       unlockedCards: []
       description: "Brutal Culling \n\nThe god, driven mad with fury, rampages through
-        the village skewering 15 villagers on his horns and then swings his head violently,
-        seading their mangled lifeless remains in all directions. "
+        the village skewering 8 villagers on his horns and then swings his head violently,
+        sending their mangled, lifeless remains in all directions. "
       audioClip: {fileID: 0}
   - mainSprite: {fileID: 21300000, guid: 30657e435d11dde4ea5764e08f052fce, type: 3}
     type: 2
@@ -134,7 +134,7 @@ MonoBehaviour:
       unlockedCards: []
       description: "Modest Blessing: Song of Mating \n\nThe God, pleased with her
         prize, hums a tune as she waddles away. Her tune drives some villagers wild
-        with lust with its ancient magic. The town prospers moderatly.  "
+        with lust with its ancient magic. The town prospers moderately.  "
       audioClip: {fileID: 0}
     - chance: 0.5
       villagerChange: 15

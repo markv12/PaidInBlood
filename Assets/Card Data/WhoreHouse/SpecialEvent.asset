@@ -18,18 +18,10 @@ MonoBehaviour:
 
 
     Lure villagers and 50% change of luring a young lad. Completes in 5 days.'
-  defaultStartText: 
+  defaultStartText: Event organization begins.
   art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 0
-  effects:
-  - chance: 1
-    villagerChange: 0
-    goatChange: 0
-    maidenChange: 0
-    youngLadChange: 0
-    unlockedCards: []
-    description: Event organization begins.
-    audioClip: {fileID: 0}
+  effects: []
   delayedEffects:
   - duration: 5
     dayOfActivation: 28

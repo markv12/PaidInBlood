@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c11d7358e693b64e9048007ba7f742d, type: 3}
   m_Name: Arranged Marragie
   m_EditorClassIdentifier: 
-  title: 'Arranged Marragie '
+  title: Arranged Marriage
   description: 'Send a woman off to be married to the leader of another clan in hopes
     they will provide some man power for your village. '
   defaultStartText: 
@@ -25,7 +25,7 @@ MonoBehaviour:
     maidenChange: 1
     youngLadChange: 0
     unlockedCards: []
-    description: The leader approves of her and send three good men as a gift.
+    description: The leader approves of her and sends three good men as a gift.
     audioClip: {fileID: 0}
   - chance: 0.7
     villagerChange: 0

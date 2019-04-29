@@ -29,7 +29,7 @@ MonoBehaviour:
     audioClip: {fileID: 0}
   delayedEffects:
   - duration: 5
-    dayOfActivation: 31
+    dayOfActivation: 51
     notificaitonText: Rite of Passage finishes in {0} turns
     effects:
     - chance: 0.75
@@ -38,7 +38,7 @@ MonoBehaviour:
       maidenChange: 0
       youngLadChange: 1
       unlockedCards: []
-      description: All men return and you are offered a young lan for sacrifice.
+      description: All men return and you are offered a young lad for sacrifice.
       audioClip: {fileID: 0}
     - chance: 0.25
       villagerChange: 5
@@ -46,6 +46,6 @@ MonoBehaviour:
       maidenChange: 0
       youngLadChange: 1
       unlockedCards: []
-      description: Your men return but only 5 of them made it back. Thankfully they
-        bring with them a young lad for sacrifice
+      description: Only 5 of your men made it back. Thankfully they bring with them
+        a young lad for sacrifice.
       audioClip: {fileID: 0}

@@ -32,6 +32,6 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: Your theives get caught and are gutted for their crime.
+    description: Your thieves get caught and are gutted for their crime.
     audioClip: {fileID: 0}
   delayedEffects: []

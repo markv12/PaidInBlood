@@ -17,18 +17,10 @@ MonoBehaviour:
 
 
     Unlocks new cards. Completes in 5 turns.'
-  defaultStartText: 
+  defaultStartText: Brothel upgrade begins.
   art: {fileID: 21300000, guid: fab8038b821f34445b517731909440b6, type: 3}
   discardOnUse: 1
-  effects:
-  - chance: 1
-    villagerChange: 0
-    goatChange: 0
-    maidenChange: 0
-    youngLadChange: 0
-    unlockedCards: []
-    description: Brothel upgrade begins.
-    audioClip: {fileID: 0}
+  effects: []
   delayedEffects:
   - duration: 5
     dayOfActivation: 21

@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: Archaic Medicine
   m_EditorClassIdentifier: 
   title: Archaic Medicine
-  description: Draw a summon circle calling forth dark forces to raise the dead!
+  description: Draw a summon circle to call forth dark forces and raise the dead!
   defaultStartText: 
   art: {fileID: 21300000, guid: ed60e49701821904ea1483cb93223bfe, type: 3}
   discardOnUse: 0
   effects:
-  - chance: 0.6
-    villagerChange: -3
+  - chance: 0.2
+    villagerChange: 5
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: The dark forces rampage and kill the summoners
+    description: The dark forces hear your plea and raise the dead!
     audioClip: {fileID: 0}
   - chance: 0.2
     villagerChange: 0
@@ -34,12 +34,12 @@ MonoBehaviour:
     unlockedCards: []
     description: 'The summoning fails and the dark forces do not rise '
     audioClip: {fileID: 0}
-  - chance: 0.2
-    villagerChange: 5
+  - chance: 0.6
+    villagerChange: -3
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: The dark forces hear your plea and raise the dead!
+    description: The dark forces rampage and kill the summoners
     audioClip: {fileID: 0}
   delayedEffects: []
