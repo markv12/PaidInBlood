@@ -143,6 +143,7 @@ public class UIManager : MonoBehaviour {
             yield return new WaitForSeconds(waitTime);
         }
         if (fadeIn) {
+            this.EnsureCoroutineStopped(ref hideRoutine);
             effectUI.SetActive(true);
             effectText.text = message;
         }

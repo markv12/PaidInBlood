@@ -62,7 +62,14 @@ public class GameMain : MonoBehaviour {
         }
     }
 
-    private GameState currentState = GameState.ChoosingCard;
+    private GameState _currentState = GameState.ChoosingCard;
+    private GameState currentState {
+        get { return _currentState; }
+        set {
+            _currentState = value;
+            Debug.Log(Time.frameCount + " State set: " + value);
+        }
+    }
     public delegate void DayChangedDelegate(int prevDay, int currentDay);
     public event DayChangedDelegate DayChangedEvent;
 
@@ -102,24 +109,28 @@ public class GameMain : MonoBehaviour {
             CardData.DelayedEffect dE = delayedEffects[i];
             if(dE.dayOfActivation <= CurrentDay){
                 CardData.CardEffectChance e = PickEffect(dE.effects);
-                ApplyEffect(e);     
+                ApplyEffect(e);
+                delayedEffects.RemoveAt(i);
+                i--;
+                ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
+                currentState = GameState.ViewingDayStartEffect;
+                currentState = GameState.ViewingDayStartEffect;
                 // Debug.Log(message);
                 //show message
-            }   
+            }
         }
         notificationManager.RefreshNotificaitons(CurrentDay);
     }
 
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
-            if (currentState == GameState.ViewingEffect) {
+            if (currentState == GameState.ViewingDayEndEffect) {
                 if (uiManager.EffectPanelOpen()) {
                     if (eventMessages.Count > 0) {
                         ShowNextEventMessage(0.4f);
                         uiManager.CloseEffectPanel(0.3f);
                     } else {
                         CurrentDay++;
-
                         if (IsDaySacrificeDay(CurrentDay)) {
                             uiManager.HideCards();
                             System.Array values = System.Enum.GetValues(typeof(GodType));
@@ -133,6 +144,9 @@ public class GameMain : MonoBehaviour {
                         uiManager.CloseEffectPanel();
                     }
                 }
+            } else if(currentState == GameState.ViewingDayStartEffect) {
+                currentState = GameState.ChoosingCard;
+                uiManager.CloseEffectPanel();
             }
         }
     }
@@ -141,6 +155,8 @@ public class GameMain : MonoBehaviour {
         if (currentState == GameState.ChoosingCard) {
             CardData.CardEffectChance choosenEffect = PickEffect(data.effects);
             ApplyEffect(choosenEffect);
+            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
+
             for (int i = 0; i < data.delayedEffects.Length; i++)
             {
                 data.delayedEffects[i].dayOfActivation = CurrentDay + data.delayedEffects[i].duration; 
@@ -178,7 +194,6 @@ public class GameMain : MonoBehaviour {
             message = "Nothing Happened";
         }
         AddEventMessage(message);
-        ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
     }
 
     private List<string> eventMessages = new List<string>();
@@ -190,7 +205,7 @@ public class GameMain : MonoBehaviour {
             string nextMessage = eventMessages[0];
             Debug.Log("SHOW: " + nextMessage);
             uiManager.ShowEffect(nextMessage, waitTime);
-            currentState = GameState.ViewingEffect;
+            currentState = GameState.ViewingDayEndEffect;
             eventMessages.RemoveAt(0);
         }
     }
@@ -204,6 +219,8 @@ public class GameMain : MonoBehaviour {
                 choosenEffect = PickEffect(god.badChances);
             }
             ApplyEffect(choosenEffect);
+            ShowNextEventMessage(UIManager.CARD_MOVE_TIME);
+
             godUI.HideUI();
             CurrentDay++;
         }
@@ -224,8 +241,9 @@ public class GameMain : MonoBehaviour {
     }
 
     private enum GameState {
+        ViewingDayStartEffect,
         ChoosingCard,
-        ViewingEffect,
+        ViewingDayEndEffect,
         InteractingWithGod
     }
 
