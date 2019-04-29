@@ -43,7 +43,9 @@ public class CardFrame : MonoBehaviour {
     }
 
     public void OnPointerExit(BaseEventData eventData) {
-        rectT.localScale = Vector3.one;
+        if (rectT.localScale.x >= 1) {
+            rectT.localScale = Vector3.one;
+        }
     }
 
     private static string GetDescription(CardData data) {
