@@ -27,7 +27,7 @@ MonoBehaviour:
     unlockedCards: []
     description: Forge construction begins
   delayedEffects:
-  - duration: 2
+  - duration: 5
     dayOfActivation: 8
     notificaitonText: Barracks construction finishes in {0} turns
     effects:

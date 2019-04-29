@@ -149,6 +149,7 @@ public class GameMain : MonoBehaviour {
                 delayedEffects.Add(data.delayedEffects[i]);
                 notificationManager.AddNotification(data.delayedEffects[i].notificaitonText, data.delayedEffects[i].dayOfActivation);
             }
+            notificationManager.RefreshNotificaitons(CurrentDay);
             if(data.discardOnUse)
                 deck.RemoveFromDeck(data);
         }

@@ -28,7 +28,7 @@ MonoBehaviour:
     unlockedCards: []
     description: Brothel upgrade begins
   delayedEffects:
-  - duration: 2
+  - duration: 5
     dayOfActivation: 2
     notificaitonText: Brothel upgrade finishes in {0} turns
     effects:

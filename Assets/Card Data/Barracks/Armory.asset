@@ -28,7 +28,7 @@ MonoBehaviour:
     unlockedCards: []
     description: Armory construction begins
   delayedEffects:
-  - duration: 2
+  - duration: 5
     dayOfActivation: 8
     notificaitonText: Armory construction finishes in {0} turns
     effects:

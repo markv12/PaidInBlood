@@ -28,8 +28,8 @@ MonoBehaviour:
     unlockedCards: []
     description: Brothel construction begins
   delayedEffects:
-  - duration: 2
-    dayOfActivation: 2
+  - duration: 5
+    dayOfActivation: 5
     notificaitonText: Brothel construction finishes in {0} turns
     effects:
     - chance: 1
