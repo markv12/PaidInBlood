@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Archaic Medicine
   m_EditorClassIdentifier: 
   title: Archaic Medicine
-  description: Draw a summon circle calling forth dark forces to raise villagers who
-    died before from the grave.
+  description: Draw a summon circle calling forth dark forces to raise the dead!
   defaultStartText: 
   art: {fileID: 21300000, guid: ed60e49701821904ea1483cb93223bfe, type: 3}
   discardOnUse: 0
