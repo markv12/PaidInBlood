@@ -18,7 +18,7 @@ MonoBehaviour:
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
-  discardOnUse: 0
+  discardOnUse: 1
   effects:
   - chance: 1
     villagerChange: 0
