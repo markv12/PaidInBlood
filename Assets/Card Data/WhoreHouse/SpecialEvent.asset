@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SpecialEvent
   m_EditorClassIdentifier: 
   title: Special Event
-  description: Organize a special event. Lure people from all around and temp them
-    to stay
+  description: Organize a special event. Lure people from all around and tempt them
+    to stay.
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
@@ -29,7 +29,7 @@ MonoBehaviour:
     description: Event organization begins
   delayedEffects:
   - duration: 5
-    dayOfActivation: 0
+    dayOfActivation: 28
     notificaitonText: Special Event outcome in {0} days
     effects:
     - chance: 0.5
