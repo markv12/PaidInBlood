@@ -17,7 +17,7 @@ MonoBehaviour:
 
     Population will increase after 5 turns.'
   defaultStartText: The villagers give in to their desires.
-  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
+  art: {fileID: 21300000, guid: f79a9e5c63a84c14fa24eea58b66e9e2, type: 3}
   discardOnUse: 0
   effects: []
   delayedEffects:
