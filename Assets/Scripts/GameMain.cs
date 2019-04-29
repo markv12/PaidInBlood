@@ -99,10 +99,10 @@ public class GameMain : MonoBehaviour {
         uiManager.cardClickedEvent += CardClickedHandler;
         godUI.sacrificeClickedEvent += SacrificeClickedHandler;
         DrawCards();
-        Villagers = 3;
-        Goats = 1;
-        Maidens = 1;
-        YoungLads = 1;
+        Villagers = 10;
+        Goats = 0;
+        Maidens = 0;
+        YoungLads = 0;
         backgroundMusic.PlayMusic(MusicType.Peaceful);
     }
 
