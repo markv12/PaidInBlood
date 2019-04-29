@@ -10,29 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c11d7358e693b64e9048007ba7f742d, type: 3}
-  m_Name: DeathOfABraveLad
+  m_Name: Build a School
   m_EditorClassIdentifier: 
-  title: Death of a Brave Lad
-  description: A brave lad in your village is the perfect sacrifice to the gods.
+  title: Build a School
+  description: A school could help educate the villagers about how to survive but
+    sometimes knowledge is dangerous for those in power.
   defaultStartText: 
-  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
+  art: {fileID: 21300000, guid: fab8038b821f34445b517731909440b6, type: 3}
   discardOnUse: 0
   effects:
-  - chance: 0.5
-    villagerChange: 0
-    goatChange: 0
-    maidenChange: 0
-    youngLadChange: 1
-    unlockedCards: []
-    description: 'He agrees to sacrifice himself for the village. '
-    audioClip: {fileID: 0}
-  - chance: 0.5
-    villagerChange: -6
+  - chance: 0.6
+    villagerChange: 3
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: People leave the village in disgust that you would think to sacrifice
-      him.
+    description: 'The school is a success and villagers learn to survive the harshness
+      of this world a little better. '
+    audioClip: {fileID: 0}
+  - chance: 0.4
+    villagerChange: -3
+    goatChange: 0
+    maidenChange: 0
+    youngLadChange: 0
+    unlockedCards: []
+    description: 'The students learn to well and abandon the village in disgust of
+      choices you made in the past. '
     audioClip: {fileID: 0}
   delayedEffects: []
