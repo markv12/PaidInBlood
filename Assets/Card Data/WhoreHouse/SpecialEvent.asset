@@ -18,9 +18,8 @@ MonoBehaviour:
 
 
     Lure villagers and 50% change of luring a young lad. Completes in 5 days.'
-  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
-  artBackground: {fileID: 0}
-  art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
+  defaultStartText: 
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 0
   effects:
   - chance: 1
@@ -30,6 +29,7 @@ MonoBehaviour:
     youngLadChange: 0
     unlockedCards: []
     description: Event organization begins.
+    audioClip: {fileID: 0}
   delayedEffects:
   - duration: 5
     dayOfActivation: 28
@@ -43,6 +43,7 @@ MonoBehaviour:
       unlockedCards: []
       description: The event is a great success. Wine was plentiful and so was the
         crowd. 10 new villagers and a striking young man join the village.
+      audioClip: {fileID: 0}
     - chance: 0.5
       villagerChange: 5
       goatChange: 0
@@ -52,3 +53,4 @@ MonoBehaviour:
       description: The event was too much of a success. Too much wine was had and
         people's tensions rose too high. 5 People died in a fight but other 5 joined
         the village along with a striking yyoung man
+      audioClip: {fileID: 0}

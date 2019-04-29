@@ -14,19 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Build Watermill
   description: Build a watermill for your town.
-  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
-  artBackground: {fileID: 0}
-  art: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  defaultStartText: 
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
+  discardOnUse: 0
   effects:
   - chance: 0.5
     villagerChange: 3
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: Building is a success and your village prospers.
+    audioClip: {fileID: 0}
   - chance: 0.5
     villagerChange: -3
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: A disaster happens when building and 3 people are killed.
+    audioClip: {fileID: 0}
+  delayedEffects: []

@@ -15,19 +15,24 @@ MonoBehaviour:
   title: 'Mauling of a Maiden '
   description: A fair maiden passing buy is attacked by brigands. Risk your villagers
     to save her (for now)?
-  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
-  artBackground: {fileID: 0}
-  art: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  defaultStartText: 
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
+  discardOnUse: 0
   effects:
   - chance: 0.4
     villagerChange: 0
     goatChange: 0
     maidenChange: 1
     youngLadChange: 0
+    unlockedCards: []
     description: You save her from the brigands and lock her in the sacrifice chamber!
+    audioClip: {fileID: 0}
   - chance: 0.6
     villagerChange: -6
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: Several of your men die trying save her and you lose her.
+    audioClip: {fileID: 0}
+  delayedEffects: []

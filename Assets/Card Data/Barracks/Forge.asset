@@ -15,9 +15,8 @@ MonoBehaviour:
   title: Forge
   description: "Cast your rakes aside and outfit your soldiers with swords and shields.
     \n\nUnlocks better expeditions."
-  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
-  artBackground: {fileID: 0}
-  art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
+  defaultStartText: 
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 1
   effects:
   - chance: 1
@@ -27,9 +26,10 @@ MonoBehaviour:
     youngLadChange: 0
     unlockedCards: []
     description: Forge construction begins.
+    audioClip: {fileID: 0}
   delayedEffects:
   - duration: 5
-    dayOfActivation: 8
+    dayOfActivation: 23
     notificaitonText: Forge construction finishes in {0} turns
     effects:
     - chance: 1
@@ -41,3 +41,4 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 5d9db595152f740429138d0bcd1062c3, type: 2}
       - {fileID: 11400000, guid: 9484352adfe8d5e4a98b4a723d0b2d4b, type: 2}
       description: Forge construction finished. New Expeditions available.
+      audioClip: {fileID: 0}

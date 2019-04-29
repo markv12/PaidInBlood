@@ -26,8 +26,6 @@ public class CardFrame : MonoBehaviour {
         get { return data; }
         set {
             data = value;
-            cardBackgroundImage.sprite = data.cardBackground;
-            artBackgroundImage.sprite = data.artBackground;
             artImage.sprite = data.art;
             titleText.text = data.title;
             descriptionText.text = GetDescription(data);

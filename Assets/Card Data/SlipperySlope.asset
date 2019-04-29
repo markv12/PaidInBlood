@@ -14,25 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Slippery Slope
   description: Climb a steep cliff to capture a goat!
-  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
-  artBackground: {fileID: 0}
-  art: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  defaultStartText: 
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
+  discardOnUse: 0
   effects:
   - chance: 0.2
     villagerChange: 0
     goatChange: 1
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: You capture the goat!
+    audioClip: {fileID: 0}
   - chance: 0.3
     villagerChange: 0
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: You fail and return home empty handed.
+    audioClip: {fileID: 0}
   - chance: 0.5
     villagerChange: -2
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
+    unlockedCards: []
     description: Two villiagers fall off the mountainside trying to capture the beast.
+    audioClip: {fileID: 0}
+  delayedEffects: []

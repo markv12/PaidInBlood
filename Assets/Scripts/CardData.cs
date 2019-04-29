@@ -8,8 +8,6 @@ public class CardData : ScriptableObject {
     [TextArea]
     public string description;
     public string defaultStartText;
-    public Sprite cardBackground;
-    public Sprite artBackground;
     public Sprite art;
     public bool discardOnUse;
 

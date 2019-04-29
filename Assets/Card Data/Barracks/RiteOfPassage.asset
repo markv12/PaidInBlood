@@ -15,9 +15,8 @@ MonoBehaviour:
   title: Rite of Passage
   description: "Train a group of young boys to become men. \n\n10 villagers leave
     for 5 turns.\n75% chance of them returning with a young lad."
-  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
-  artBackground: {fileID: 0}
-  art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
+  defaultStartText: 
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 0
   effects:
   - chance: 1
@@ -27,9 +26,10 @@ MonoBehaviour:
     youngLadChange: 0
     unlockedCards: []
     description: The boys walk off from the village.
+    audioClip: {fileID: 0}
   delayedEffects:
   - duration: 5
-    dayOfActivation: 8
+    dayOfActivation: 31
     notificaitonText: Rite of Passage finishes in {0} turns
     effects:
     - chance: 0.75
@@ -39,6 +39,7 @@ MonoBehaviour:
       youngLadChange: 1
       unlockedCards: []
       description: All men return and you are offered a young lan for sacrifice.
+      audioClip: {fileID: 0}
     - chance: 0.25
       villagerChange: 5
       goatChange: 0
@@ -47,3 +48,4 @@ MonoBehaviour:
       unlockedCards: []
       description: Your men return but only 5 of them made it back. Thankfully they
         bring with them a young lad for sacrifice
+      audioClip: {fileID: 0}

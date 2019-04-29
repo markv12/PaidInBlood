@@ -16,9 +16,8 @@ MonoBehaviour:
   description: "Give the common folk some basic training in combat allowing them to
     go on expeditions. \n\nExpeditions are multi-day commitments that have a chance
     for a great result.Completes in 5 turns.  "
-  cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
-  artBackground: {fileID: 0}
-  art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
+  defaultStartText: 
+  art: {fileID: 21300000, guid: 65d2c318cadcf114bb17fa54241be405, type: 3}
   discardOnUse: 1
   effects:
   - chance: 1
@@ -28,9 +27,10 @@ MonoBehaviour:
     youngLadChange: 0
     unlockedCards: []
     description: Construction of the Barracks begins.
+    audioClip: {fileID: 0}
   delayedEffects:
   - duration: 5
-    dayOfActivation: 9
+    dayOfActivation: 5
     notificaitonText: Barracks construction finishes in {0} turns
     effects:
     - chance: 1
@@ -45,3 +45,4 @@ MonoBehaviour:
 
 
         "Expedition" cards UNLOCKED'
+      audioClip: {fileID: 0}
