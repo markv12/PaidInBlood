@@ -288,7 +288,7 @@ public class GameMain : MonoBehaviour {
 
     public static bool IsDaySacrificeDay(int day) {
         if(day > 25) {
-            return (day - 3) % 6 == 0;
+            return (day - 1) % 5 == 0;
         } else {
             return day > 0 && day % 7 == 0;
         }

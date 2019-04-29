@@ -22,14 +22,14 @@ MonoBehaviour:
   effects: []
   delayedEffects:
   - duration: 5
-    dayOfActivation: 22
+    dayOfActivation: 58
     notificaitonText: Result of your sinful ways in {0} turns
     effects:
     - chance: 1
-      villagerChange: 2
+      villagerChange: 4
       goatChange: 0
       maidenChange: 0
       youngLadChange: 0
       unlockedCards: []
-      description: Unplanned pregnancy ups population by 2 villagers!
+      description: Unplanned pregnancy ups population by 4 villagers!
       audioClip: {fileID: 0}

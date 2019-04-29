@@ -18,7 +18,7 @@ MonoBehaviour:
   art: {fileID: 21300000, guid: ed60e49701821904ea1483cb93223bfe, type: 3}
   discardOnUse: 0
   effects:
-  - chance: 0.2
+  - chance: 0.3
     villagerChange: 5
     goatChange: 0
     maidenChange: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
     unlockedCards: []
     description: The dark forces hear your plea and raise the dead!
     audioClip: {fileID: 0}
-  - chance: 0.2
+  - chance: 0.3
     villagerChange: 0
     goatChange: 0
     maidenChange: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
     unlockedCards: []
     description: 'The summoning fails and the dark forces do not rise '
     audioClip: {fileID: 0}
-  - chance: 0.6
+  - chance: 0.4
     villagerChange: -3
     goatChange: 0
     maidenChange: 0

@@ -19,7 +19,7 @@ MonoBehaviour:
   art: {fileID: 21300000, guid: 37af3dea32636704d8af61c4dba7b925, type: 3}
   discardOnUse: 0
   effects:
-  - chance: 0.4
+  - chance: 0.5
     villagerChange: 0
     goatChange: 0
     maidenChange: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
     unlockedCards: []
     description: You save her from the brigands and lock her in the sacrifice chamber!
     audioClip: {fileID: 0}
-  - chance: 0.6
+  - chance: 0.5
     villagerChange: -6
     goatChange: 0
     maidenChange: 0

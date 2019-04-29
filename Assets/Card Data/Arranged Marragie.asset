@@ -28,11 +28,11 @@ MonoBehaviour:
     description: The leader approves of her and sends three good men as a gift.
     audioClip: {fileID: 0}
   - chance: 0.7
-    villagerChange: 0
+    villagerChange: -1
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: The leader rejects the woman and send her head back in bag.
+    description: The leader rejects the woman and sends her head back in a bag.
     audioClip: {fileID: 0}
   delayedEffects: []

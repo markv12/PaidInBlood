@@ -24,7 +24,7 @@ MonoBehaviour:
   effects: []
   delayedEffects:
   - duration: 5
-    dayOfActivation: 28
+    dayOfActivation: 48
     notificaitonText: Special Event outcome in {0} days
     effects:
     - chance: 0.5
@@ -43,6 +43,6 @@ MonoBehaviour:
       youngLadChange: 1
       unlockedCards: []
       description: The event was too much of a success. Too much wine was had and
-        people's tensions rose too high. 5 People died in a fight but other 5 joined
-        the village along with a striking yyoung man
+        people's tensions rose too high. 5 People died in a fight but another 5 joined
+        the village along with a striking young man.
       audioClip: {fileID: 0}

@@ -19,7 +19,7 @@ MonoBehaviour:
   art: {fileID: 21300000, guid: fab8038b821f34445b517731909440b6, type: 3}
   discardOnUse: 0
   effects:
-  - chance: 0.6
+  - chance: 0.5
     villagerChange: -4
     goatChange: 0
     maidenChange: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
     description: The plank breaks when 4 people try to climb on it. They all drown
       in their own poop.
     audioClip: {fileID: 0}
-  - chance: 0.4
+  - chance: 0.5
     villagerChange: 3
     goatChange: 0
     maidenChange: 0

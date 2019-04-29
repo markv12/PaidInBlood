@@ -40,6 +40,6 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: Two villiagers fall off the mountainside trying to capture the beast.
+    description: Two villagers fall off the mountainside trying to capture the beast.
     audioClip: {fileID: 0}
   delayedEffects: []
