@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CarnalDesires
   m_EditorClassIdentifier: 
   title: Carnal Desires
-  description: Villagers give in to their desires.
+  description: Villagers give in to their desires. Population increases after 5 days.
   cardBackground: {fileID: 21300000, guid: 420411b74ef41a24a81b8c55546e5667, type: 3}
   artBackground: {fileID: 0}
   art: {fileID: 21300000, guid: ac24a8deafb12fc45a31a57ee410005d, type: 3}
