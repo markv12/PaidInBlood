@@ -287,7 +287,11 @@ public class GameMain : MonoBehaviour {
     }
 
     public static bool IsDaySacrificeDay(int day) {
-        return day > 0 && day % 7 == 0;
+        if(day > 25) {
+            return (day - 3) % 6 == 0;
+        } else {
+            return day > 0 && day % 7 == 0;
+        }
     }
 
     private enum GameState {
