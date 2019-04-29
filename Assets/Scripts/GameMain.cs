@@ -189,12 +189,12 @@ public class GameMain : MonoBehaviour {
             Maidens += effect.maidenChange;
             YoungLads += effect.youngLadChange;
             deck.AddToDeck(effect.unlockedCards);
-            if(defaultStartText != null) {
+            if(defaultStartText != null && defaultStartText != "") {
                 message += defaultStartText + System.Environment.NewLine;
             }
             message += CardData.GetEffectText(effect) + System.Environment.NewLine;
         } else {
-            if(defaultStartText != null) {
+            if(defaultStartText != null && defaultStartText != "") {
                 message = defaultStartText;
             } else {
                 message = "Nothing Happened";
