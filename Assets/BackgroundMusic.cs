@@ -15,9 +15,13 @@ public class BackgroundMusic : MonoBehaviour
 
 
     private Coroutine musicFadeRoutine;
+    private MusicType currentlyPlayingMusicType = MusicType.none;
     public void PlayMusic(MusicType type) {
-        this.EnsureCoroutineStopped(ref musicFadeRoutine);
-        musicFadeRoutine = StartCoroutine(MusicFadeRoutine(type, theSource.isPlaying));
+        if (type != currentlyPlayingMusicType) {
+            this.EnsureCoroutineStopped(ref musicFadeRoutine);
+            currentlyPlayingMusicType = type;
+            musicFadeRoutine = StartCoroutine(MusicFadeRoutine(type, theSource.isPlaying));
+        }
     }
 
     private const float MUSIC_FADE_TIME = 1.666f;
@@ -64,6 +68,7 @@ public class BackgroundMusic : MonoBehaviour
     }
 }
 public enum MusicType {
+    none,
     Peaceful,
     God
 }

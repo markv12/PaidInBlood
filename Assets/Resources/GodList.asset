@@ -26,7 +26,7 @@ MonoBehaviour:
       youngLadChange: 0
       unlockedCards: []
       description: "Modest Blessing: Saliva \n\nThe God salivates in glee of his fresh
-        prize. The villagers collect a small ammount of the  liquid in jars and use
+        prize. The villagers collect a small amount of the  liquid in jars and use
         it to strengthen the bonding of a few buildings. The village prospers moderately. "
       audioClip: {fileID: 0}
     - chance: 0.5
@@ -36,9 +36,9 @@ MonoBehaviour:
       youngLadChange: 0
       unlockedCards: []
       description: "Great Blessing: Chin drizzle \n\nThe God cannot contain his joy
-        and vigiously excreets fluids from his chin. The villagers collect large ammounts
-        of the liquid in jars  and use it to strengthen the bonding of a many buildings.
-        The village prospers greatly. "
+        and vigiously excretes  fluids from his chin. The villagers collect large
+        amounts of the liquid in jars and use it to strengthen the bonding of a many
+        buildings. The village prospers greatly. "
       audioClip: {fileID: 0}
     badChances:
     - chance: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
       unlockedCards: []
       description: "Modest Blessing: Fur Pollen \n\nThe God quivers slightly with
         glee at his sacrifice. The sacred pollen from his fur floats to a nearby field
-        cause the crops to grow rapidly. The town prospers moderately."
+        causing the crops to grow rapidly. The town prospers moderately."
       audioClip: {fileID: 0}
     - chance: 0.5
       villagerChange: 15
@@ -110,8 +110,8 @@ MonoBehaviour:
       maidenChange: 0
       youngLadChange: 0
       unlockedCards: []
-      description: "Brutal Culling \n\nThe driven mad with fury rampages through the
-        villlage skewering 15 villagers on his horns and the n swings his head viloently
+      description: "Brutal Culling \n\nThe god, driven mad with fury, rampages through
+        the village skewering 15 villagers on his horns and then swings his head violently,
         seading their mangled lifeless remains in all directions. "
       audioClip: {fileID: 0}
   - mainSprite: {fileID: 21300000, guid: 30657e435d11dde4ea5764e08f052fce, type: 3}
@@ -126,9 +126,9 @@ MonoBehaviour:
       maidenChange: 0
       youngLadChange: 0
       unlockedCards: []
-      description: "Modest Blessing: Song of Mating \n\nThe God pleased with her prize,
-        hums a tune as she waddles away. Her tune drives some villagers wild with
-        lust with it aceint magic. The town prospers moderatly.  "
+      description: "Modest Blessing: Song of Mating \n\nThe God, pleased with her
+        prize, hums a tune as she waddles away. Her tune drives some villagers wild
+        with lust with its ancient magic. The town prospers moderatly.  "
       audioClip: {fileID: 0}
     - chance: 0.5
       villagerChange: 15
@@ -138,8 +138,8 @@ MonoBehaviour:
       unlockedCards: []
       description: "Great Blessing: The Milk of Fertility \n\nThe God extatic with
         her sacrifice invites 15 villagers to suckle the thick yellow cream from her
-        withering teet. Though bitter and viscous it provides instant fertily both
-        both men and women alike. The town prospers greatly. "
+        withering teet. It provides instant fertility for both both men and women
+        alike. The town prospers greatly. "
       audioClip: {fileID: 0}
     badChances:
     - chance: 0.5
@@ -148,7 +148,7 @@ MonoBehaviour:
       maidenChange: 0
       youngLadChange: 0
       unlockedCards: []
-      description: "Merciful Culling \n\nThe God shows some modicome of mercy. With
+      description: "Merciful Culling \n\nThe God shows some modicum of mercy. With
         only a quick outburst of rage she stuffs 5 villagers into her moist flesh
         flabs and storms off.  "
       audioClip: {fileID: 0}
@@ -160,10 +160,10 @@ MonoBehaviour:
       unlockedCards: []
       description: "Brutal Culling\n\nThe God's eyes roll back in pure rage as she
         enhales deeply. She lets out a high pitched scream that shakes the foundations
-        of the town so strong a vibration that 15 villagers groveling near her explode
-        from the inside. \nScreen reader support enabled.\n \n \n \t\t\n\nThe God's
-        eyes roll back in pure rage as she enhales deeply. She lets out a high pitched
-        scream that shakes the foundations of the town so strong a vibration that
-        15 villagers groveling near her explode from the inside. \n\n \n2 collaborators
-        have joined the document."
+        of the town. The 15 villagers groveling near her explode from the inside.
+        \nScreen reader support enabled.\n \n \n \t\t\n\nThe God's eyes roll back
+        in pure rage as she enhales deeply. She lets out a high pitched scream that
+        shakes the foundations of the town so strong a vibration that 15 villagers
+        groveling near her explode from the inside. \n\n \n2 collaborators have joined
+        the document."
       audioClip: {fileID: 0}

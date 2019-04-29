@@ -134,6 +134,7 @@ public class GameMain : MonoBehaviour {
             if(Villagers <= 0) {
                 gameOverManager.ShowGameOver();
                 currentState = GameState.none;
+                backgroundMusic.PlayMusic(MusicType.God);
             } else {
                 if (IsDaySacrificeDay(CurrentDay)) {
                     uiManager.HideCards();
@@ -242,10 +243,16 @@ public class GameMain : MonoBehaviour {
             ApplyEffect(choosenEffect);
             DisplayMessageList(delegate {
                 GoToNextDay(delegate {
-                    godUI.HideUI();
-                    DrawCards();
-                    backgroundMusic.PlayMusic(MusicType.Peaceful);
-                    currentState = GameState.ChoosingCard;
+                    if (Villagers <= 0) {
+                        gameOverManager.ShowGameOver();
+                        currentState = GameState.none;
+                        backgroundMusic.PlayMusic(MusicType.God);
+                    } else {
+                        godUI.HideUI();
+                        DrawCards();
+                        backgroundMusic.PlayMusic(MusicType.Peaceful);
+                        currentState = GameState.ChoosingCard;
+                    }
                 });
             },0);
         }

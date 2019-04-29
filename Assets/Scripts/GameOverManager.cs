@@ -18,7 +18,7 @@ public class GameOverManager : MonoBehaviour {
         });
     }
 
-    private const float GAME_OVER_FADE_TIME = 1.333f;
+    private const float GAME_OVER_FADE_TIME = 0.8f;
     private Coroutine showGameOverRoutine = null;
     public void ShowGameOver() {
         mainGroup.alpha = 0;
@@ -46,9 +46,11 @@ public class GameOverManager : MonoBehaviour {
         while (progress <= 1) {
             progress = elapsedTime / GAME_OVER_FADE_TIME;
             elapsedTime += Time.unscaledDeltaTime;
+            background.color = Color.Lerp(Color.black, Color.white, progress);
             mainGroup.alpha = 1 - progress;
             yield return null;
         }
+        background.color = Color.white;
         mainGroup.alpha = 0;
         yield return null;
         Scene currentScene = SceneManager.GetActiveScene();
