@@ -17,6 +17,8 @@ public class Deck
         }
         set{
             _currentIndex = value;
+            if(_currentIndex < 0)
+                _currentIndex = 0;
         }
     }
 

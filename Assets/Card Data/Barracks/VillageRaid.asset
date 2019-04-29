@@ -25,7 +25,9 @@ MonoBehaviour:
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: 10 villagers leave for 5 turns
+    description: '10 villagers leave for 5 turns
+
+      75% chance of returning with 2 Maidens'
   delayedEffects:
   - duration: 5
     dayOfActivation: 8

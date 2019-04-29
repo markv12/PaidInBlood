@@ -20,29 +20,31 @@ MonoBehaviour:
   discardOnUse: 0
   effects:
   - chance: 1
-    villagerChange: -15
+    villagerChange: -10
     goatChange: 0
     maidenChange: 0
     youngLadChange: 0
     unlockedCards: []
-    description: 15 villagers leave for 5 turns
+    description: '10 villagers leave for 5 turns
+
+      75% chance of them returning with a young man'
   delayedEffects:
   - duration: 5
     dayOfActivation: 8
     notificaitonText: Rite of Passage finishes in {0} turns
     effects:
     - chance: 0.75
-      villagerChange: 15
+      villagerChange: 10
       goatChange: 0
       maidenChange: 0
       youngLadChange: 1
       unlockedCards: []
       description: All men return and you are offered a youngman for sacrifice
     - chance: 0.25
-      villagerChange: 10
+      villagerChange: 5
       goatChange: 0
       maidenChange: 0
       youngLadChange: 1
       unlockedCards: []
-      description: Your men return but only 10 of them made it back. Thankfully they
+      description: Your men return but only 5 of them made it back. Thankfully they
         bring with them a youngman for sacrifice
