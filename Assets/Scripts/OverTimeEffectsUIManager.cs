@@ -36,6 +36,7 @@ public class OverTimeEffectsUIManager : MonoBehaviour
                 ui.textField.text = notificationText;
             }
         }
+        title.SetActive(notifications.Count != 0);
     }
 
     NotificationUI GetFreeNotification(){
