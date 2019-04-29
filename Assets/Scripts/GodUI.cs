@@ -35,6 +35,7 @@ public class GodUI : MonoBehaviour {
     private const float BACKGROUND_FADE_TIME = 1f;
     private const float GOD_FADE_TIME = 2.8f;
     private const float BUTTON_FADE_TIME = 0.666f;
+    private static readonly Color WHITE_CLEAR = new Color(1, 1, 1, 0);
     private static readonly Color TRU_BLACK = new Color(0,0,0,1f);
     private static readonly Color GOD_COLOR = new Color(0.9f, 0.9f, 0.9f, 1);
     private IEnumerator ShowUI(God god, bool sacrificePossible) {
@@ -50,6 +51,9 @@ public class GodUI : MonoBehaviour {
             mistGroup.alpha = progress;
             yield return null;
         }
+        background.color = TRU_BLACK;
+        mistGroup.alpha = 1;
+
         progress = 0;
         elapsedTime = 0;
         while (progress <= 1) {
@@ -67,6 +71,8 @@ public class GodUI : MonoBehaviour {
             godTransform.localScale = Vector2.Lerp(Vector2.zero, Vector2.one, easedProgress);
             yield return null;
         }
+        godImage.color = GOD_COLOR;
+        godTransform.localScale = Vector2.one;
 
         sayingText.text = god.entranceSaying;
 
@@ -76,8 +82,11 @@ public class GodUI : MonoBehaviour {
             progress = elapsedTime / BUTTON_FADE_TIME;
             elapsedTime += Time.unscaledDeltaTime;
             buttonGroup.alpha = progress;
+            sayingText.color = Color.Lerp(WHITE_CLEAR, Color.white, progress);
             yield return null;
         }
+        buttonGroup.alpha = 1;
+        sayingText.color = Color.white;
     }
 
     public void HideUI() {
@@ -85,15 +94,18 @@ public class GodUI : MonoBehaviour {
     }
 
     private IEnumerator _HideUI() {
-        sayingText.text = "";
         float progress = 0;
         float elapsedTime = 0;
         while (progress <= 1) {
             progress = elapsedTime / BUTTON_FADE_TIME;
             elapsedTime += Time.unscaledDeltaTime;
             buttonGroup.alpha = 1-progress;
+            sayingText.color = Color.Lerp(Color.white, WHITE_CLEAR, progress);
             yield return null;
         }
+        sayingText.color = WHITE_CLEAR;
+        buttonGroup.alpha = 0;
+        sayingText.text = "";
 
         progress = 0;
         elapsedTime = 0;
@@ -113,6 +125,9 @@ public class GodUI : MonoBehaviour {
             godTransform.localScale = Vector2.Lerp(Vector2.one, Vector2.zero, easedProgress);
             yield return null;
         }
+        godImage.color = Color.clear;
+        godTransform.localScale = Vector2.zero;
+
         progress = 0;
         elapsedTime = 0;
         while (progress <= 1) {
@@ -122,6 +137,8 @@ public class GodUI : MonoBehaviour {
             mistGroup.alpha = 1- progress;
             yield return null;
         }
+        background.color = Color.clear;
+        mistGroup.alpha = 0;
         mistObject.SetActive(false);
     }
 }

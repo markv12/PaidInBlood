@@ -41,7 +41,9 @@ public class UIManager : MonoBehaviour {
     }
 
     private IEnumerator _ResetCards(CardData cd1, CardData cd2) {
-        yield return StartCoroutine(MoveCardsOut());
+        if (leftCard.rectT.anchoredPosition.y > CARD_OFF_SCREEN_Y || rightCard.rectT.anchoredPosition.y > CARD_OFF_SCREEN_Y) {
+            yield return StartCoroutine(MoveCardsOut());
+        }
         leftCard.Data = cd1;
         rightCard.Data = cd2;
         yield return StartCoroutine(MoveCardsIn());
@@ -64,12 +66,12 @@ public class UIManager : MonoBehaviour {
     }
 
     private const float CARD_MOVE_IN_TIME = 0.7f;
-    private static readonly Vector2 leftStartPosition = new Vector2(-300, -975);
-    private static readonly Vector2 rightStartPosition = new Vector2(300, -975);
+    private const float CARD_OFF_SCREEN_Y = -960f;
+    private static readonly Vector2 leftStartPosition = new Vector2(-300, CARD_OFF_SCREEN_Y);
+    private static readonly Vector2 rightStartPosition = new Vector2(300, CARD_OFF_SCREEN_Y);
     private static readonly Vector2 leftEndPosition = new Vector2(-300, 0);
     private static readonly Vector2 rightEndPosition = new Vector2(300, 0);
     private IEnumerator MoveCardsIn() {
-        Debug.Log("cards moved in");
         float progress = 0;
         float elapsedTime = 0;
         while (progress <= 1) {
@@ -88,11 +90,10 @@ public class UIManager : MonoBehaviour {
 
     private const float CARD_MOVE_OUT_TIME = 0.5f;
     private IEnumerator MoveCardsOut() {
-        Debug.Log("cards moved out");
         Vector2 leftStart = leftCard.rectT.anchoredPosition;
         Vector2 rightStart = rightCard.rectT.anchoredPosition;
-        Vector2 leftEnd = new Vector2(leftCard.rectT.anchoredPosition.x, -975);
-        Vector2 rightEnd = new Vector2(rightCard.rectT.anchoredPosition.x, -975);
+        Vector2 leftEnd = new Vector2(leftCard.rectT.anchoredPosition.x, CARD_OFF_SCREEN_Y);
+        Vector2 rightEnd = new Vector2(rightCard.rectT.anchoredPosition.x, CARD_OFF_SCREEN_Y);
         float progress = 0;
         float elapsedTime = 0;
         while (progress <= 1) {
@@ -116,7 +117,7 @@ public class UIManager : MonoBehaviour {
         CardFrame showCard = leftSelected ? leftCard : rightCard;
         CardFrame hideCard = leftSelected ? rightCard : leftCard;
         Vector2 hideStartPosition = hideCard.rectT.anchoredPosition;
-        Vector2 hideEndPosition = new Vector2(hideCard.rectT.anchoredPosition.x, -975);
+        Vector2 hideEndPosition = new Vector2(hideCard.rectT.anchoredPosition.x, CARD_OFF_SCREEN_Y);
         Vector2 showStartPosition = showCard.rectT.anchoredPosition;
         Vector2 showEndPosition = Vector2.zero;
 
