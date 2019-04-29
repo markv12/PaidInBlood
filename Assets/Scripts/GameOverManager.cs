@@ -2,12 +2,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameOverManager : MonoBehaviour {
 
     public CanvasGroup mainGroup;
     public Image background;
     public Button restartButton;
+    public TMP_Text turnText;
 
     private void Awake() {
         restartButton.onClick.AddListener(delegate {
@@ -20,9 +22,10 @@ public class GameOverManager : MonoBehaviour {
 
     private const float GAME_OVER_FADE_TIME = 0.8f;
     private Coroutine showGameOverRoutine = null;
-    public void ShowGameOver() {
+    public void ShowGameOver(int turnsSurvived) {
         mainGroup.alpha = 0;
         gameObject.SetActive(true);
+        turnText.text = "Survived " + turnsSurvived.ToString() + " Turns";
         showGameOverRoutine = StartCoroutine(_ShowGameOver());
     }
     private IEnumerator _ShowGameOver() {

@@ -142,7 +142,7 @@ public class GameMain : MonoBehaviour {
         uiManager.HideCards();
         GoToNextDay(delegate {
             if(Villagers <= 0) {
-                gameOverManager.ShowGameOver();
+                gameOverManager.ShowGameOver(CurrentDay);
                 currentState = GameState.none;
                 backgroundMusic.PlayMusic(MusicType.God);
             } else {
@@ -262,7 +262,7 @@ public class GameMain : MonoBehaviour {
             DisplayMessageList(delegate {
                 GoToNextDay(delegate {
                     if (Villagers <= 0) {
-                        gameOverManager.ShowGameOver();
+                        gameOverManager.ShowGameOver(CurrentDay);
                         currentState = GameState.none;
                         backgroundMusic.PlayMusic(MusicType.God);
                     } else {
