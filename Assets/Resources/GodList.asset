@@ -71,8 +71,8 @@ MonoBehaviour:
     name: Master Goat
     sacrificeButtonText: Sacrifice Goat
     entranceSaying: I desire my own kind!
-    happySound: {fileID: 8300000, guid: a93b75b78dce03f41804026b6cec3a1d, type: 3}
-    angrySound: {fileID: 8300000, guid: de467f5b286d31941a706ae862d6f5b0, type: 3}
+    happySound: {fileID: 8300000, guid: df7b47266d70c0448a4c42090272ed9f, type: 3}
+    angrySound: {fileID: 8300000, guid: 870c43eadddcc314e888a110eec89af2, type: 3}
     goodChances:
     - chance: 0.5
       villagerChange: 5
@@ -123,8 +123,8 @@ MonoBehaviour:
     name: Aging Rabbit
     sacrificeButtonText: Sacrifice Young Lad
     entranceSaying: I desire a youthful lad!
-    happySound: {fileID: 8300000, guid: a93b75b78dce03f41804026b6cec3a1d, type: 3}
-    angrySound: {fileID: 8300000, guid: de467f5b286d31941a706ae862d6f5b0, type: 3}
+    happySound: {fileID: 8300000, guid: d007dc919ef4b1548bb6d8e3c8450e51, type: 3}
+    angrySound: {fileID: 8300000, guid: 6b816b4c1e16c6c45a808bce484ca8df, type: 3}
     goodChances:
     - chance: 0.5
       villagerChange: 5
