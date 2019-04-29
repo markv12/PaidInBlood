@@ -37,6 +37,8 @@ public class God {
     public string name;
     public string sacrificeButtonText;
     public string entranceSaying;
+    public AudioClip happySound;
+    public AudioClip angrySound;
     public CardData.CardEffectChance[] goodChances;
     public CardData.CardEffectChance[] badChances;
 }

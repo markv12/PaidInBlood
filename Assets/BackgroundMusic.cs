@@ -16,16 +16,19 @@ public class BackgroundMusic : MonoBehaviour
 
     private Coroutine musicFadeRoutine;
     private MusicType currentlyPlayingMusicType = MusicType.none;
-    public void PlayMusic(MusicType type) {
+    public void PlayMusic(MusicType type, float waitTime = 0) {
         if (type != currentlyPlayingMusicType) {
             this.EnsureCoroutineStopped(ref musicFadeRoutine);
             currentlyPlayingMusicType = type;
-            musicFadeRoutine = StartCoroutine(MusicFadeRoutine(type, theSource.isPlaying));
+            musicFadeRoutine = StartCoroutine(MusicFadeRoutine(type, theSource.isPlaying, waitTime));
         }
     }
 
-    private const float MUSIC_FADE_TIME = 1.666f;
-    private IEnumerator MusicFadeRoutine(MusicType type, bool firstFadeOut) {
+    private const float MUSIC_FADE_TIME = 0.666f;
+    private IEnumerator MusicFadeRoutine(MusicType type, bool firstFadeOut, float waitTime) {
+        if(waitTime > 0) {
+            yield return new WaitForSeconds(waitTime);
+        }
         float progress = 0;
         float elapsedTime = 0;
         if (firstFadeOut) {

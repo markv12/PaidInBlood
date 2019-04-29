@@ -18,6 +18,8 @@ MonoBehaviour:
     name: Frogdor
     sacrificeButtonText: Sacrifice Maiden
     entranceSaying: I desire a pure maiden!
+    happySound: {fileID: 8300000, guid: a93b75b78dce03f41804026b6cec3a1d, type: 3}
+    angrySound: {fileID: 8300000, guid: de467f5b286d31941a706ae862d6f5b0, type: 3}
     goodChances:
     - chance: 0.5
       villagerChange: 5
@@ -41,7 +43,7 @@ MonoBehaviour:
         buildings. The village prospers greatly. "
       audioClip: {fileID: 0}
     badChances:
-    - chance: 0
+    - chance: 0.5
       villagerChange: -5
       goatChange: 0
       maidenChange: 0
@@ -51,7 +53,7 @@ MonoBehaviour:
         and blesses you by only licking the skin of 5 villagers clean off andleaving
         their bodies as a reminder of what happens to those who do not provide."
       audioClip: {fileID: 0}
-    - chance: 0
+    - chance: 0.5
       villagerChange: -15
       goatChange: 0
       maidenChange: 0
@@ -69,6 +71,8 @@ MonoBehaviour:
     name: Master Goat
     sacrificeButtonText: Sacrifice Goat
     entranceSaying: I desire my own kind!
+    happySound: {fileID: 8300000, guid: a93b75b78dce03f41804026b6cec3a1d, type: 3}
+    angrySound: {fileID: 8300000, guid: de467f5b286d31941a706ae862d6f5b0, type: 3}
     goodChances:
     - chance: 0.5
       villagerChange: 5
@@ -119,6 +123,8 @@ MonoBehaviour:
     name: Aging Rabbit
     sacrificeButtonText: Sacrifice Young Lad
     entranceSaying: I desire a youthful lad!
+    happySound: {fileID: 8300000, guid: a93b75b78dce03f41804026b6cec3a1d, type: 3}
+    angrySound: {fileID: 8300000, guid: de467f5b286d31941a706ae862d6f5b0, type: 3}
     goodChances:
     - chance: 0.5
       villagerChange: 5
@@ -158,12 +164,10 @@ MonoBehaviour:
       maidenChange: 0
       youngLadChange: 0
       unlockedCards: []
-      description: "Brutal Culling\n\nThe God's eyes roll back in pure rage as she
-        enhales deeply. She lets out a high pitched scream that shakes the foundations
-        of the town. The 15 villagers groveling near her explode from the inside.
-        \nScreen reader support enabled.\n \n \n \t\t\n\nThe God's eyes roll back
-        in pure rage as she enhales deeply. She lets out a high pitched scream that
-        shakes the foundations of the town so strong a vibration that 15 villagers
-        groveling near her explode from the inside. \n\n \n2 collaborators have joined
-        the document."
+      description: 'Brutal Culling
+
+
+        The God''s eyes roll back in pure rage as she enhales deeply. She lets out
+        a high pitched scream that shakes the foundations of the town. The 15 villagers
+        groveling near her explode from the inside.'
       audioClip: {fileID: 0}

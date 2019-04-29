@@ -16,8 +16,7 @@ public class GameMain : MonoBehaviour {
 
     [SerializeField]
     private BackgroundMusic backgroundMusic;
-    [SerializeField]
-    private AudioSource effectAudioSource;
+
     [SerializeField]
     private OverTimeEffectsUIManager notificationManager;
     [SerializeField]
@@ -31,6 +30,17 @@ public class GameMain : MonoBehaviour {
 
     [SerializeField]
     private GodList godList;
+
+    [SerializeField]
+    private AudioSource effectAudioSource;
+    [SerializeField]
+    private AudioSource godAudioSource;
+    [SerializeField]
+    private AudioSource crowdAudioSource;
+    [SerializeField]
+    private AudioClip crowdHappyClip;
+    [SerializeField]
+    private AudioClip crowdTerrorClip;
 
     private int villagers = 0;
     public int Villagers {
@@ -155,7 +165,7 @@ public class GameMain : MonoBehaviour {
         if (currentState == GameState.ChoosingCard) {
             CardData.CardEffectChance choosenEffect = PickEffect(data.effects);
             ApplyEffect(choosenEffect, data.defaultStartText);
-            DisplayMessageList(BeginNextTurn, UIManager.CARD_MOVE_TIME);
+            DisplayMessageList(BeginNextTurn, 0);
 
             for (int i = 0; i < data.delayedEffects.Length; i++)
             {
@@ -237,8 +247,16 @@ public class GameMain : MonoBehaviour {
             CardData.CardEffectChance choosenEffect;
             if (successful) {
                 choosenEffect = PickEffect(god.goodChances);
+                godAudioSource.clip = god.happySound;
+                godAudioSource.Play();
+                crowdAudioSource.clip = crowdHappyClip;
+                crowdAudioSource.PlayDelayed(1.666f);
             } else {
                 choosenEffect = PickEffect(god.badChances);
+                godAudioSource.clip = god.angrySound;
+                godAudioSource.Play();
+                crowdAudioSource.clip = crowdTerrorClip;
+                crowdAudioSource.PlayDelayed(1.666f);
             }
             ApplyEffect(choosenEffect);
             DisplayMessageList(delegate {
@@ -250,7 +268,7 @@ public class GameMain : MonoBehaviour {
                     } else {
                         godUI.HideUI();
                         DrawCards();
-                        backgroundMusic.PlayMusic(MusicType.Peaceful);
+                        backgroundMusic.PlayMusic(MusicType.Peaceful, 2.5f);
                         currentState = GameState.ChoosingCard;
                     }
                 });
@@ -269,7 +287,7 @@ public class GameMain : MonoBehaviour {
     }
 
     public static bool IsDaySacrificeDay(int day) {
-        return day % 7 == 0;
+        return day > 0 && day % 7 == 0;
     }
 
     private enum GameState {

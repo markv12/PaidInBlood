@@ -105,7 +105,9 @@ public class UIManager : MonoBehaviour {
             yield return null;
         }
         leftCard.rectT.anchoredPosition = leftStartPosition;
+        leftCard.rectT.localScale = Vector3.one;
         rightCard.rectT.anchoredPosition = rightStartPosition;
+        rightCard.rectT.localScale = Vector3.one;
     }
 
     private void AnimateSelectedCard(bool leftSelected) {
@@ -119,7 +121,9 @@ public class UIManager : MonoBehaviour {
         Vector2 hideStartPosition = hideCard.rectT.anchoredPosition;
         Vector2 hideEndPosition = new Vector2(hideCard.rectT.anchoredPosition.x, CARD_OFF_SCREEN_Y);
         Vector2 showStartPosition = showCard.rectT.anchoredPosition;
-        Vector2 showEndPosition = Vector2.zero;
+        Vector2 showEndPosition = new Vector2(755, -50);
+        Vector3 showStartScale = Vector3.one;
+        Vector3 showEndScale = new Vector3(0.666f, 0.666f, 0.666f);
 
         float progress = 0;
         float elapsedTime = 0;
@@ -130,10 +134,12 @@ public class UIManager : MonoBehaviour {
             float easedProgressShow = Easing.easeInOutSine(0, 1, progress);
             hideCard.rectT.anchoredPosition = Vector2.Lerp(hideStartPosition, hideEndPosition, easedProgressHide);
             showCard.rectT.anchoredPosition = Vector2.Lerp(showStartPosition, showEndPosition, easedProgressShow);
+            showCard.rectT.localScale = Vector3.Lerp(showStartScale, showEndScale, easedProgressShow);
             yield return null;
         }
         hideCard.rectT.anchoredPosition = hideEndPosition;
         showCard.rectT.anchoredPosition = showEndPosition;
+        showCard.rectT.localScale = showEndScale;
     }
 
     private const float FADE_TIME = 0.3f;
