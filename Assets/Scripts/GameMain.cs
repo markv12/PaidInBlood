@@ -192,7 +192,7 @@ public class GameMain : MonoBehaviour {
         return null;
     }
 
-    private void ApplyEffect(CardData.CardEffectChance effect, string defaultStartText = null) {
+    private void ApplyEffect(CardData.CardEffectChance effect, string defaultStartText = null, EffectEventType type = EffectEventType.Normal) {
         string message = "";
         if (effect != null) {
             Villagers += effect.villagerChange;
@@ -211,12 +211,12 @@ public class GameMain : MonoBehaviour {
                 message = "Nothing Happened";
             }
         }
-        AddEventMessage(message);
+        AddEventMessage(message, type);
     }
 
-    private List<string> eventMessages = new List<string>();
-    private void AddEventMessage(string message) {
-        eventMessages.Add(message);
+    private List<EventMessage> eventMessages = new List<EventMessage>();
+    private void AddEventMessage(string _message, EffectEventType _type) {
+        eventMessages.Add(new EventMessage { message = _message, type = _type });
     }
     private void DisplayMessageList(System.Action onComplete, float waitTime) {
         StartCoroutine(_DisplayMessageList(onComplete, waitTime));
@@ -224,7 +224,7 @@ public class GameMain : MonoBehaviour {
     private IEnumerator _DisplayMessageList(System.Action onComplete, float waitTime) {
         currentState = GameState.ViewingEffects;
         for (int i = 0; i < eventMessages.Count; i++) {
-            string nextMessage = eventMessages[i];
+            EventMessage nextMessage = eventMessages[i];
             if (i == 0) {
                 yield return StartCoroutine(uiManager.ShowEffect(nextMessage, waitTime));
             } else {
@@ -258,7 +258,7 @@ public class GameMain : MonoBehaviour {
                 crowdAudioSource.clip = crowdTerrorClip;
                 crowdAudioSource.PlayDelayed(1.666f);
             }
-            ApplyEffect(choosenEffect);
+            ApplyEffect(choosenEffect, null, EffectEventType.God);
             DisplayMessageList(delegate {
                 GoToNextDay(delegate {
                     if (Villagers <= 0) {
@@ -329,3 +329,14 @@ public class GameMain : MonoBehaviour {
         godUI.sacrificeClickedEvent -= SacrificeClickedHandler;
     }
 }
+
+public enum EffectEventType {
+    Normal,
+    God
+}
+
+public struct EventMessage {
+    public string message;
+    public EffectEventType type;
+}
+

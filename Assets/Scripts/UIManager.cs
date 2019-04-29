@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
     public CardFrame.CardClickedDelegate cardClickedEvent;
@@ -11,6 +12,9 @@ public class UIManager : MonoBehaviour {
 
     public CardFrame leftCard;
     public CardFrame rightCard;
+    public Image effectBackground;
+    public Sprite normalEventSprite;
+    public Sprite godEventSprite;
 
     private void Awake() {
         effectUI.SetActive(false);
@@ -53,8 +57,9 @@ public class UIManager : MonoBehaviour {
         StartCoroutine(MoveCardsOut());
     }
 
-    public IEnumerator ShowEffect(string effectMessage, float waitTime = 0) {
-        return FadeEffectPanel(effectMessage, true, waitTime, FADE_TIME, null);
+    public IEnumerator ShowEffect(EventMessage effectMessage, float waitTime = 0) {
+        effectBackground.sprite = GetSpriteForEventType(effectMessage.type);
+        return FadeEffectPanel(effectMessage.message, true, waitTime, FADE_TIME, null);
     }
     public IEnumerator CloseEffectPanel(IEnumerator onComplete) {
         return FadeEffectPanel("", false, 0, FADE_TIME, onComplete);
@@ -173,5 +178,15 @@ public class UIManager : MonoBehaviour {
 
     public bool EffectPanelOpen() {
         return effectUI.activeSelf && effectUIGroup.alpha > 0.75f;
+    }
+
+    private Sprite GetSpriteForEventType(EffectEventType type) {
+        switch (type) {
+            case EffectEventType.Normal:
+                return normalEventSprite;
+            case EffectEventType.God:
+                return godEventSprite;
+        }
+        return normalEventSprite;
     }
 }
