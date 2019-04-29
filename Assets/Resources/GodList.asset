@@ -18,13 +18,152 @@ MonoBehaviour:
     name: Frogdor
     sacrificeButtonText: Sacrifice Maiden
     entranceSaying: I desire a pure maiden!
+    goodChances:
+    - chance: 0.5
+      villagerChange: 5
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Modest Blessing: Saliva \n\nThe God salivates in glee of his fresh
+        prize. The villagers collect a small ammount of the  liquid in jars and use
+        it to strengthen the bonding of a few buildings. The village prospers moderately. "
+      audioClip: {fileID: 0}
+    - chance: 0.5
+      villagerChange: 15
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Great Blessing: Chin drizzle \n\nThe God cannot contain his joy
+        and vigiously excreets fluids from his chin. The villagers collect large ammounts
+        of the liquid in jars  and use it to strengthen the bonding of a many buildings.
+        The village prospers greatly. "
+      audioClip: {fileID: 0}
+    badChances:
+    - chance: 0
+      villagerChange: -5
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Merciful Culling \n\nThe God takes some pity on your weakness
+        and blesses you by only licking the skin of 5 villagers clean off andleaving
+        their bodies as a reminder of what happens to those who do not provide."
+      audioClip: {fileID: 0}
+    - chance: 0
+      villagerChange: -15
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: 'Brutal Culling
+
+
+        The God enraged by your incompetence whips up 15 of your villagers with his
+        sinuous tounge and swallows them whole. Their screams ring in your dreams
+        for the rest of your days.  '
+      audioClip: {fileID: 0}
   - mainSprite: {fileID: 21300000, guid: 5a1b5be283802dc4892fec18d8ab405e, type: 3}
     type: 1
     name: Master Goat
     sacrificeButtonText: Sacrifice Goat
     entranceSaying: I desire my own kind!
+    goodChances:
+    - chance: 0.5
+      villagerChange: 5
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Modest Blessing: Fur Pollen \n\nThe God quivers slightly with
+        glee at his sacrifice. The sacred pollen from his fur floats to a nearby field
+        cause the crops to grow rapidly. The town prospers moderately."
+      audioClip: {fileID: 0}
+    - chance: 0.5
+      villagerChange: 15
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: 'Great Blessing: Divine Eye Booger
+
+
+        The God swints his eyes in pure mirth over his sacrifice causing the festering
+        blob on his eye to drop to floor. The clot through disgusting is of a divine
+        nature and when planted grows a tree that provide bountiful fruit. The town
+        prospers greatly. '
+      audioClip: {fileID: 0}
+    badChances:
+    - chance: 0.5
+      villagerChange: -5
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Merciful Culling \n\nThe God shows a shred of mercy by only trampling
+        5 villagers into a crimson paste and bucking the remains into the public square. "
+      audioClip: {fileID: 0}
+    - chance: 0.5
+      villagerChange: -15
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Brutal Culling \n\nThe driven mad with fury rampages through the
+        villlage skewering 15 villagers on his horns and the n swings his head viloently
+        seading their mangled lifeless remains in all directions. "
+      audioClip: {fileID: 0}
   - mainSprite: {fileID: 21300000, guid: 30657e435d11dde4ea5764e08f052fce, type: 3}
     type: 2
     name: Aging Rabbit
     sacrificeButtonText: Sacrifice Young Lad
     entranceSaying: I desire a youthful lad!
+    goodChances:
+    - chance: 0.5
+      villagerChange: 5
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Modest Blessing: Song of Mating \n\nThe God pleased with her prize,
+        hums a tune as she waddles away. Her tune drives some villagers wild with
+        lust with it aceint magic. The town prospers moderatly.  "
+      audioClip: {fileID: 0}
+    - chance: 0.5
+      villagerChange: 15
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Great Blessing: The Milk of Fertility \n\nThe God extatic with
+        her sacrifice invites 15 villagers to suckle the thick yellow cream from her
+        withering teet. Though bitter and viscous it provides instant fertily both
+        both men and women alike. The town prospers greatly. "
+      audioClip: {fileID: 0}
+    badChances:
+    - chance: 0.5
+      villagerChange: -5
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Merciful Culling \n\nThe God shows some modicome of mercy. With
+        only a quick outburst of rage she stuffs 5 villagers into her moist flesh
+        flabs and storms off.  "
+      audioClip: {fileID: 0}
+    - chance: 0.5
+      villagerChange: -15
+      goatChange: 0
+      maidenChange: 0
+      youngLadChange: 0
+      unlockedCards: []
+      description: "Brutal Culling\n\nThe God's eyes roll back in pure rage as she
+        enhales deeply. She lets out a high pitched scream that shakes the foundations
+        of the town so strong a vibration that 15 villagers groveling near her explode
+        from the inside. \nScreen reader support enabled.\n \n \n \t\t\n\nThe God's
+        eyes roll back in pure rage as she enhales deeply. She lets out a high pitched
+        scream that shakes the foundations of the town so strong a vibration that
+        15 villagers groveling near her explode from the inside. \n\n \n2 collaborators
+        have joined the document."
+      audioClip: {fileID: 0}
